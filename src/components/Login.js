@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { loadRequestToken, loadAccessToken } from './api'
-import storage from './storage'
+
+import { loadRequestToken, loadAccessToken } from './../lib/api'
+import storage from './../lib/storage'
 
 class Login extends Component {
   constructor (props) {

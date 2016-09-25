@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Login from './Login'
 import Timeline from './Timeline'
-import storage from './storage'
+import storage from './../lib/storage'
 
 class App extends Component {
   constructor (props) {

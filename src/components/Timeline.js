@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { loadTweets } from './api'
+import { loadTweets } from './../lib/api'
 import Tweet from './Tweet'
 
 class Timeline extends Component {

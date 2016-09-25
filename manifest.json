@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "version": "0.1",
+  "name": "React Twitter Client",
+  "description": "This extension shows your unread tweets",
+  "browser_action": {
+    "default_icon": "favicon.ico",
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "https://api.twitter.com/",
+    "http://localhost:3001/"
+  ]
+}

@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-addons-test-utils'
 
-import App from './App'
-import Timeline from './Timeline'
-import Login from './Login'
-import storage from './storage'
+import App from './../src/components/App'
+import Timeline from './../src/components/Timeline'
+import Login from './../src/components/Login'
+import storage from './../src/lib/storage'
 
 import mockLocalStorage from './mockLocalStorage'
 mockLocalStorage()
