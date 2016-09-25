@@ -1,28 +1,34 @@
 import React, { Component } from 'react'
-import { loadTweets } from './api'
-import Tweet from './Tweet'
+
+import Login from './Login'
+import Timeline from './Timeline'
+import storage from './storage'
 
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = {tweets: []}
+    this.saveAccessToken = this.saveAccessToken.bind(this)
+    this.loadAccessToken = this.loadAccessToken.bind(this)
   }
 
   componentWillMount() {
-    loadTweets().end(
-      (err, res) => {
-        this.setState({tweets: res.body})
-      }
-    )
+    this.loadAccessToken()
+  }
+
+  saveAccessToken (accessToken) {
+    storage.setItem('accessToken', accessToken)
+    this.loadAccessToken()
+  }
+
+  loadAccessToken () {
+    this.setState({accessToken: storage.getItem('accessToken')})
   }
 
   render() {
     return (
-      <div>
-        {
-          this.state.tweets.map(tweet => <Tweet key={tweet.id} text={tweet.text} />)
-        }
-      </div>
+      this.state.accessToken
+      ? <Timeline accessToken={this.state.accessToken} />
+      : <Login onAccessTokenLoaded={this.saveAccessToken} />
     )
   }
 }
