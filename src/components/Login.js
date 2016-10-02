@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { loadRequestToken, loadAccessToken } from './../lib/api'
+import * as api from './../lib/api'
 import storage from './../lib/storage'
 
 class Login extends Component {
@@ -20,7 +20,7 @@ class Login extends Component {
   redirectToAuthorizeUrl () {
     this.setState({loadingRequestToken: true})
 
-    loadRequestToken().end(
+    api.loadRequestToken().end(
       (err, res) => {
         storage.setItem('requestToken', res.body)
         this.setState({loadingRequestToken: false})
@@ -34,7 +34,7 @@ class Login extends Component {
   }
 
   submitPincode () {
-    loadAccessToken(
+    api.loadAccessToken(
       storage.getItem('requestToken').token,
       storage.getItem('requestToken').secret,
       this.state.pincode
@@ -65,6 +65,10 @@ class Login extends Component {
       </div>
     )
   }
+}
+
+Login.propTypes = {
+  onAccessTokenLoaded: React.PropTypes.func.isRequired
 }
 
 export default Login
