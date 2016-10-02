@@ -49,6 +49,7 @@ class Login extends Component {
         </p>
         <p>
           <button
+            ref='authorizeButton'
             disabled={this.state.loadingRequestToken}
             onClick={this.redirectToAuthorizeUrl}>
             {this.state.loadingRequestToken ? 'Loading...' : 'Authorize'}
@@ -58,8 +59,8 @@ class Login extends Component {
           After authorizing the APP you can come back here to enter your pincode:
         </p>
         <p>
-          <input placeholder='Pincode' value={this.state.pincode} onChange={this.changePincode} />
-          <button onClick={this.submitPincode}>Submit pincode</button>
+          <input ref='pinCodeInput' placeholder='Pincode' value={this.state.pincode} onChange={this.changePincode} />
+          <button ref='submitPinCodeButton' onClick={this.submitPincode}>Submit pincode</button>
         </p>
       </div>
     )
