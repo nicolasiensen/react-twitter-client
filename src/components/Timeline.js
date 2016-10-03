@@ -32,7 +32,10 @@ class Timeline extends Component {
 }
 
 Timeline.propTypes = {
-  accessToken: React.PropTypes.object.isRequired
+  accessToken: React.PropTypes.shape({
+    token: React.PropTypes.string.isRequired,
+    secret: React.PropTypes.string.isRequired
+  })
 }
 
 export default Timeline

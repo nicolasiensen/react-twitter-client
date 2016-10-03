@@ -6,4 +6,8 @@ class Tweet extends Component {
   }
 }
 
+Tweet.propTypes = {
+  text: React.PropTypes.string.isRequired
+}
+
 export default Tweet
