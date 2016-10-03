@@ -21,7 +21,7 @@ class Timeline extends Component {
   render () {
     return (
       this.state.loading
-      ? <div>loading...</div>
+      ? <div ref='loading'>loading...</div>
       : (
         <div>
           {this.state.tweets.map(t => <Tweet key={t.id} text={t.text} />)}
@@ -29,6 +29,10 @@ class Timeline extends Component {
       )
     )
   }
+}
+
+Timeline.propTypes = {
+  accessToken: React.PropTypes.object.isRequired
 }
 
 export default Timeline
