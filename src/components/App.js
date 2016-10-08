@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { StyleRoot } from 'radium'
 
 import Login from './Login'
 import Timeline from './Timeline'
+import Layout from './Layout'
 import storage from './../lib/storage'
 
 class App extends Component {
@@ -26,9 +28,15 @@ class App extends Component {
 
   render() {
     return (
-      this.state.accessToken
-      ? <Timeline accessToken={this.state.accessToken} />
-      : <Login onAccessTokenLoaded={this.saveAccessToken} />
+      <StyleRoot>
+        <Layout>
+          {
+            this.state.accessToken
+            ? <Timeline accessToken={this.state.accessToken} />
+            : <Login onAccessTokenLoaded={this.saveAccessToken} />
+          }
+        </Layout>
+      </StyleRoot>
     )
   }
 }
