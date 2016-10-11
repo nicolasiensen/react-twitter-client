@@ -28,7 +28,7 @@ class App extends Component {
 
   render() {
     return (
-      <StyleRoot>
+      <StyleRoot style={{height: '100%'}}>
         <Layout>
           {
             this.state.accessToken
