@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import Box from './Box'
 import * as api from './../lib/api'
 import storage from './../lib/storage'
 
@@ -43,7 +44,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <Box style={{maxWidth: '25rem'}}>
         <p>
           Welcome! Click on the button bellow to authorize the APP to access your Twitter account.
         </p>
@@ -62,7 +63,7 @@ class Login extends Component {
           <input ref='pinCodeInput' placeholder='Pincode' value={this.state.pincode} onChange={this.changePincode} />
           <button ref='submitPinCodeButton' onClick={this.submitPincode}>Submit pincode</button>
         </p>
-      </div>
+      </Box>
     )
   }
 }
