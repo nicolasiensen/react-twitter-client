@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
 import Box from './Box'
+import Button from './Button'
+import Input from './Input'
 import * as api from './../lib/api'
 import storage from './../lib/storage'
+import { space1 } from './../lib/styles'
 
 class Login extends Component {
   constructor (props) {
@@ -49,19 +52,25 @@ class Login extends Component {
           Welcome! Click on the button bellow to authorize the APP to access your Twitter account.
         </p>
         <p>
-          <button
+          <Button
             ref='authorizeButton'
             disabled={this.state.loadingRequestToken}
             onClick={this.redirectToAuthorizeUrl}>
             {this.state.loadingRequestToken ? 'Loading...' : 'Authorize'}
-          </button>
+          </Button>
         </p>
         <p>
           After authorizing the APP you can come back here to enter your pincode:
         </p>
         <p>
-          <input ref='pinCodeInput' placeholder='Pincode' value={this.state.pincode} onChange={this.changePincode} />
-          <button ref='submitPinCodeButton' onClick={this.submitPincode}>Submit pincode</button>
+          <Input
+            onChange={this.changePincode}
+            placeholder='Pincode'
+            ref='pinCodeInput'
+            style={{marginRight: space1}}
+            value={this.state.pincode}
+          />
+          <Button ref='submitPinCodeButton' onClick={this.submitPincode}>Submit pincode</Button>
         </p>
       </Box>
     )

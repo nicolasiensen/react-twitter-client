@@ -21,9 +21,9 @@ it('stores the access token and renders the timeline tweets', () => {
   const div = document.createElement('div')
   const app = ReactDOM.render(<App />, div)
   const login = ReactTestUtils.findRenderedComponentWithType(app, Login)
-  const authorizeButton = login.refs.authorizeButton
-  const pinCodeInput = login.refs.pinCodeInput
-  const submitPinCodeButton = login.refs.submitPinCodeButton
+  const authorizeButton = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.authorizeButton, 'button')
+  const pinCodeInput = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.pinCodeInput, 'input')
+  const submitPinCodeButton = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.submitPinCodeButton, 'button')
 
   ReactTestUtils.Simulate.click(authorizeButton)
 

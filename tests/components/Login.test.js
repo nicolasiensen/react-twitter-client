@@ -16,18 +16,18 @@ it('disables the authorize button when loading the request token', () => {
   const div = document.createElement('div')
   const login = ReactDOM.render(<Login onAccessTokenLoaded={() => {}} />, div)
   const authorizeButton = login.refs.authorizeButton
+
   login.setState({loadingRequestToken: true})
 
-  expect(authorizeButton.disabled).toBe(true)
-  expect(authorizeButton.textContent).toBe('Loading...')
+  expect(authorizeButton.props.disabled).toBe(true)
+  expect(authorizeButton.props.children).toBe('Loading...')
 })
 
 it('stores the request token', () => {
   const div = document.createElement('div')
   const login = ReactDOM.render(<Login onAccessTokenLoaded={() => {}} />, div)
-  const authorizeButton = login.refs.authorizeButton
 
-  ReactTestUtils.Simulate.click(authorizeButton)
+  login.redirectToAuthorizeUrl()
 
   expect(storage.getItem('requestToken')).toEqual({token: 'RT123456', secret: 'RT654321'})
 })
@@ -35,9 +35,8 @@ it('stores the request token', () => {
 it('updates the state when the pin code input is changed', () => {
   const div = document.createElement('div')
   const login = ReactDOM.render(<Login onAccessTokenLoaded={() => {}} />, div)
-  const pinCodeInput = login.refs.pinCodeInput
 
-  ReactTestUtils.Simulate.change(pinCodeInput, {target: {value: 'PIN123456'}})
+  login.changePincode({target: { value: 'PIN123456' }})
 
   expect(login.state.pincode).toBe('PIN123456')
 })
@@ -46,13 +45,10 @@ it('loads the access token and pass it along to the onAccessTokenLoaded prop cal
   const div = document.createElement('div')
   const onAccessTokenLoaded = jest.fn()
   const login = ReactDOM.render(<Login onAccessTokenLoaded={onAccessTokenLoaded} />, div)
-  const authorizeButton = login.refs.authorizeButton
-  const pinCodeInput = login.refs.pinCodeInput
-  const submitPinCodeButton = login.refs.submitPinCodeButton
 
-  ReactTestUtils.Simulate.click(authorizeButton)
-  ReactTestUtils.Simulate.change(pinCodeInput, {target: {value: 'PIN123456'}})
-  ReactTestUtils.Simulate.click(submitPinCodeButton)
+  login.redirectToAuthorizeUrl()
+  login.changePincode({target: { value: 'PIN123456' }})
+  login.submitPincode()
 
   expect(onAccessTokenLoaded.mock.calls.length).toBe(1)
   expect(onAccessTokenLoaded.mock.calls[0][0]).toEqual({token: 'AT123456', secret: 'AT654321'})
