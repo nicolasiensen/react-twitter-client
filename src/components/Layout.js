@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Radium from 'radium'
 
-import { space2, lightGray, smBreakpoint } from './../lib/styles'
+import { space2, lightGray, smBreakpoint, black } from './../lib/styles'
 
 const styles = {
   container: {
+    color: black,
     background: lightGray,
     minHeight: '100%',
     [`@media (min-width: ${smBreakpoint})`]: {

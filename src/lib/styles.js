@@ -14,6 +14,7 @@ export const lightGray = '#eee'
 export const gray = '#ccc'
 export const white = '#fff'
 export const blue = '#1da1f2'
+export const black = '#333'
 export const primaryColor = blue
 export const disabledColor = gray
 
