@@ -10,14 +10,16 @@ import {
   fontBold,
   inputBorderWidth,
   disabledColor,
-  h4 
+  h4
 } from './../lib/styles'
 
 class Button extends Component {
   render () {
+    const { inline, ...other } = this.props
+
     const styles = {
       backgroundColor: primaryColor,
-      borderRadius: borderRadius,
+      borderRadius: `${inline ? 0 : borderRadius} ${borderRadius} ${borderRadius} ${inline ? 0 : borderRadius}`,
       borderStyle: 'solid',
       borderWidth: inputBorderWidth,
       borderColor: primaryColor,
@@ -36,13 +38,12 @@ class Button extends Component {
       }
     }
 
-    return <button style={styles} {...this.props} />
+    return <button {...other} style={styles} />
   }
 }
 
 Button.propTypes = {
-  disabled: React.PropTypes.bool,
-  onClick: React.PropTypes.func
+  inline: React.PropTypes.bool,
 }
 
 export default Radium(Button)

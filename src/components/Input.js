@@ -3,13 +3,15 @@ import { space1, borderRadius, inputBorderWidth, gray, h4 } from './../lib/style
 
 class Input extends Component {
   render () {
+    const { inline, style, ...other } = this.props
+
     return (
       <input
-        {...this.props}
+        {...other}
         style={{
-          ...this.props.style,
+          ...style,
           padding: space1,
-          borderRadius: borderRadius,
+          borderRadius: `${borderRadius} ${inline ? 0 : borderRadius} ${inline ? 0 : borderRadius} ${borderRadius}`,
           borderStyle: 'solid',
           borderWidth: inputBorderWidth,
           borderColor: gray,
@@ -21,10 +23,8 @@ class Input extends Component {
 }
 
 Input.propTypes = {
-  onChange: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
+  inline: React.PropTypes.bool,
   style: React.PropTypes.object,
-  value: React.PropTypes.string
 }
 
 export default Input
