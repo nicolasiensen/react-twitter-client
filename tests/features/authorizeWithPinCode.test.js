@@ -22,16 +22,16 @@ it('stores the access token and renders the timeline tweets', () => {
   const app = ReactDOM.render(<App />, div)
   const login = ReactTestUtils.findRenderedComponentWithType(app, Login)
   const authorizeButton = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.authorizeButton, 'button')
-  const pinCodeInput = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.pinCodeInput, 'input')
-  const submitPinCodeButton = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.submitPinCodeButton, 'button')
+  const pinInput = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.pinInput, 'input')
+  const submitPinButton = ReactTestUtils.findRenderedDOMComponentWithTag(login.refs.submitPinButton, 'button')
 
   ReactTestUtils.Simulate.click(authorizeButton)
 
   expect(storage.getItem('requestToken').token).toBe('RT123456')
   expect(storage.getItem('requestToken').secret).toBe('RT654321')
 
-  ReactTestUtils.Simulate.change(pinCodeInput, { target: { value: '123456'}})
-  ReactTestUtils.Simulate.click(submitPinCodeButton)
+  ReactTestUtils.Simulate.change(pinInput, { target: { value: '123456'}})
+  ReactTestUtils.Simulate.click(submitPinButton)
 
   expect(storage.getItem('accessToken').token).toBe('AT123456')
   expect(storage.getItem('accessToken').secret).toBe('AT654321')

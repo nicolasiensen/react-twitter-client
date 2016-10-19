@@ -32,13 +32,13 @@ it('stores the request token', () => {
   expect(storage.getItem('requestToken')).toEqual({token: 'RT123456', secret: 'RT654321'})
 })
 
-it('updates the state when the pin code input is changed', () => {
+it('updates the state when the pin input is changed', () => {
   const div = document.createElement('div')
   const login = ReactDOM.render(<Login onAccessTokenLoaded={() => {}} />, div)
 
-  login.changePincode({target: { value: 'PIN123456' }})
+  login.changePin({target: { value: 'PIN123456' }})
 
-  expect(login.state.pincode).toBe('PIN123456')
+  expect(login.state.pin).toBe('PIN123456')
 })
 
 it('loads the access token and pass it along to the onAccessTokenLoaded prop callback', () => {
@@ -47,8 +47,8 @@ it('loads the access token and pass it along to the onAccessTokenLoaded prop cal
   const login = ReactDOM.render(<Login onAccessTokenLoaded={onAccessTokenLoaded} />, div)
 
   login.redirectToAuthorizeUrl()
-  login.changePincode({target: { value: 'PIN123456' }})
-  login.submitPincode()
+  login.changePin({target: { value: 'PIN123456' }})
+  login.submitPin()
 
   expect(onAccessTokenLoaded.mock.calls.length).toBe(1)
   expect(onAccessTokenLoaded.mock.calls[0][0]).toEqual({token: 'AT123456', secret: 'AT654321'})

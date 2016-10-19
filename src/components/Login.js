@@ -11,13 +11,13 @@ class Login extends Component {
   constructor (props) {
     super(props)
 
-    this.changePincode = this.changePincode.bind(this)
-    this.submitPincode = this.submitPincode.bind(this)
+    this.changePin = this.changePin.bind(this)
+    this.submitPin = this.submitPin.bind(this)
     this.redirectToAuthorizeUrl = this.redirectToAuthorizeUrl.bind(this)
 
     this.state = {
       loadingRequestToken: false,
-      pincode: ''
+      pin: ''
     }
   }
 
@@ -33,44 +33,44 @@ class Login extends Component {
     )
   }
 
-  changePincode (event) {
-    this.setState({pincode: event.target.value})
+  changePin (event) {
+    this.setState({pin: event.target.value})
   }
 
-  submitPincode () {
+  submitPin () {
     api.loadAccessToken(
       storage.getItem('requestToken').token,
       storage.getItem('requestToken').secret,
-      this.state.pincode
+      this.state.pin
     ).end((err, res) => this.props.onAccessTokenLoaded(res.body))
   }
 
   render() {
     return (
-      <Box style={{maxWidth: '25rem'}}>
+      <Box style={{maxWidth: '25rem', margin: space1}}>
         <p>
-          Welcome! Click on the button bellow to authorize the APP to access your Twitter account.
+          Click on the button bellow to get your PIN:
         </p>
         <p>
           <Button
             ref='authorizeButton'
             disabled={this.state.loadingRequestToken}
             onClick={this.redirectToAuthorizeUrl}>
-            {this.state.loadingRequestToken ? 'Loading...' : 'Authorize'}
+            {this.state.loadingRequestToken ? 'Loading...' : 'Get my PIN'}
           </Button>
         </p>
         <p>
-          After authorizing the APP you can come back here to enter your pincode:
+          Once you have your PIN, submit it in the following form:
         </p>
         <p>
           <Input
-            onChange={this.changePincode}
-            placeholder='Pincode'
-            ref='pinCodeInput'
-            style={{marginRight: space1}}
-            value={this.state.pincode}
+            inline
+            onChange={this.changePin}
+            placeholder='PIN'
+            ref='pinInput'
+            value={this.state.pin}
           />
-          <Button ref='submitPinCodeButton' onClick={this.submitPincode}>Submit pincode</Button>
+          <Button inline ref='submitPinButton' onClick={this.submitPin}>Go</Button>
         </p>
       </Box>
     )

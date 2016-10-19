@@ -7,6 +7,7 @@ const styles = {
   container: {
     color: black,
     background: lightGray,
+    overflow: 'hidden',
     minHeight: '100%',
     [`@media (min-width: ${smBreakpoint})`]: {
       padding: space2
