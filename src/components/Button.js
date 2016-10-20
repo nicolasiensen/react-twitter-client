@@ -15,9 +15,10 @@ import {
 
 class Button extends Component {
   render () {
-    const { inline, ...other } = this.props
+    const { inline, style, ...other } = this.props
 
     const styles = {
+      ...style,
       backgroundColor: primaryColor,
       borderRadius: `${inline ? 0 : borderRadius} ${borderRadius} ${borderRadius} ${inline ? 0 : borderRadius}`,
       borderStyle: 'solid',
@@ -44,6 +45,7 @@ class Button extends Component {
 
 Button.propTypes = {
   inline: React.PropTypes.bool,
+  style: React.PropTypes.object,
 }
 
 export default Radium(Button)
