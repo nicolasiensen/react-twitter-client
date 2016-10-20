@@ -3,9 +3,10 @@ import React, { Component } from 'react'
 import Box from './Box'
 import Button from './Button'
 import Input from './Input'
+import Text from './Text'
 import * as api from './../lib/api'
 import storage from './../lib/storage'
-import { space1 } from './../lib/styles'
+import { space2 } from './../lib/styles'
 
 class Login extends Component {
   constructor (props) {
@@ -47,31 +48,24 @@ class Login extends Component {
 
   render() {
     return (
-      <Box style={{maxWidth: '25rem', margin: space1}}>
-        <p>
-          Click on the button bellow to get your PIN:
-        </p>
-        <p>
-          <Button
-            ref='authorizeButton'
-            disabled={this.state.loadingRequestToken}
-            onClick={this.redirectToAuthorizeUrl}>
-            {this.state.loadingRequestToken ? 'Loading...' : 'Get my PIN'}
-          </Button>
-        </p>
-        <p>
-          Once you have your PIN, submit it in the following form:
-        </p>
-        <p>
-          <Input
-            inline
-            onChange={this.changePin}
-            placeholder='PIN'
-            ref='pinInput'
-            value={this.state.pin}
-          />
-          <Button inline ref='submitPinButton' onClick={this.submitPin}>Go</Button>
-        </p>
+      <Box style={{maxWidth: '25rem'}}>
+        <Text>Click on the button bellow to get your PIN:</Text>
+        <Button
+          style={{marginBottom: space2}}
+          ref='authorizeButton'
+          disabled={this.state.loadingRequestToken}
+          onClick={this.redirectToAuthorizeUrl}>
+          {this.state.loadingRequestToken ? 'Loading...' : 'Get my PIN'}
+        </Button>
+        <Text>Once you have your PIN, submit it in the following form:</Text>
+        <Input
+          inline
+          onChange={this.changePin}
+          placeholder='PIN'
+          ref='pinInput'
+          value={this.state.pin}
+        />
+        <Button inline ref='submitPinButton' onClick={this.submitPin}>Go</Button>
       </Box>
     )
   }
