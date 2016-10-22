@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
-import { loadTweets } from './../lib/api'
 import Tweet from './Tweet'
+
+import { loadTweets } from './../lib/api'
+import { space1 } from './../lib/styles'
 
 class Timeline extends Component {
   constructor (props) {
@@ -21,10 +23,16 @@ class Timeline extends Component {
   render () {
     return (
       this.state.loading
-      ? <div ref='loading'>loading...</div>
+      ? <div ref='loading' style={{textAlign: 'center', margin: space1}}>Loading...</div>
       : (
         <div>
-          {this.state.tweets.map(t => <Tweet key={t.id} text={t.text} />)}
+          {
+            this.state.tweets.map(
+              t => t.retweeted_status
+              ? <Tweet key={t.id} tweet={t.retweeted_status} retweetedBy={t.user} /> 
+              : <Tweet key={t.id} tweet={t} />
+            )
+          }
         </div>
       )
     )

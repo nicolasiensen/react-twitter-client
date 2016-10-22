@@ -24,3 +24,15 @@ it('shows a list of tweets', () => {
 
   expect(tweets.length).toBe(fakeTweets.length)
 })
+
+it('shows the original tweet of a retweet', () => {
+  const div = document.createElement('div')
+  const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
+  const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
+  const retweet = fakeTweets.find(t => t.retweeted_status)
+  const retweetIndex = fakeTweets.indexOf(retweet)
+  const retweetComponent = tweets[retweetIndex]
+
+  expect(retweetComponent.props.tweet).toBe(retweet.retweeted_status)
+  expect(retweetComponent.props.retweetedBy).toBe(retweet.user)
+})
