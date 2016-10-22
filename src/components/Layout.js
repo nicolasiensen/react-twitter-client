@@ -14,7 +14,8 @@ const styles = {
     }
   },
   content: {
-    maxWidth: '600px',
+    width: '600px',
+    maxWidth: '100%',
     margin: '0 auto'
   }
 }
