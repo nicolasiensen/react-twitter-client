@@ -12,7 +12,7 @@ const retweetedTweet = fakeTweets.find(t => t.retweeted_status)
 it('shows the tweet text', () => {
   const component = ReactTestUtils.renderIntoDocument(<Tweet tweet={tweet} />)
   const domNode = ReactDOM.findDOMNode(component)
-  expect(domNode.textContent).toMatch(tweet.text)
+  expect(domNode.textContent).toMatch(tweet.text.replace(/&amp;/g, '&'))
 })
 
 it('shows the profile image of the user', () => {

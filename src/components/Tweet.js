@@ -18,7 +18,7 @@ class Tweet extends Component {
             <span style={{fontWeight: fontBold}}>{tweet.user.name}</span>&nbsp;
             <span style={{fontSize: h6}}>{moment(tweet.created_at, 'ddd MMM DD HH:mm:ss Z YYYY').fromNow()}</span>
           </div>
-          <div>{tweet.text}</div>
+          <div dangerouslySetInnerHTML={{__html: tweet.text}}></div>
         </div>
       </div>
     )
