@@ -4,11 +4,19 @@ import Tweet from './Tweet'
 
 import { loadTweets } from './../lib/api'
 import { space1 } from './../lib/styles'
+import storage from './../lib/storage'
 
 class Timeline extends Component {
   constructor (props) {
     super(props)
-    this.state = {tweets: [], loading: false}
+    this.archiveTweet = this.archiveTweet.bind(this)
+    this.getUnarchivedTweets = this.getUnarchivedTweets.bind(this)
+
+    this.state = {
+      tweets: [],
+      loading: false,
+      archivedTweetsIds: storage.getItem('archivedTweetsIds') || []
+    }
   }
 
   componentWillMount () {
@@ -20,6 +28,21 @@ class Timeline extends Component {
     )
   }
 
+  archiveTweet (tweet) {
+    this.setState({archivedTweetsIds: this.state.archivedTweetsIds.concat(tweet.id)})
+    storage.setItem('archivedTweetsIds', this.state.archivedTweetsIds.concat(tweet.id))
+  }
+
+  getUnarchivedTweets () {
+    return this.state.tweets.filter(
+      t => (
+        t.retweeted_status
+        ? !this.state.archivedTweetsIds.includes(t.retweeted_status.id)
+        : !this.state.archivedTweetsIds.includes(t.id)
+      )
+    )
+  }
+
   render () {
     return (
       this.state.loading
@@ -27,10 +50,10 @@ class Timeline extends Component {
       : (
         <div>
           {
-            this.state.tweets.map(
+            this.getUnarchivedTweets().map(
               t => t.retweeted_status
-              ? <Tweet key={t.id} tweet={t.retweeted_status} retweetedBy={t.user} /> 
-              : <Tweet key={t.id} tweet={t} />
+              ? <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t.retweeted_status} retweetedBy={t.user} />
+              : <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t} />
             )
           }
         </div>
