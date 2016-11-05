@@ -44,17 +44,22 @@ class Timeline extends Component {
   }
 
   render () {
+    const unarchivedTweets = this.getUnarchivedTweets()
+
     return (
       this.state.loading
       ? <div ref='loading' style={{textAlign: 'center', margin: space1}}>Loading...</div>
       : (
         <div>
           {
-            this.getUnarchivedTweets().map(
-              t => t.retweeted_status
-              ? <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t.retweeted_status} retweetedBy={t.user} />
-              : <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t} />
-            )
+            unarchivedTweets.length > 0
+            ? (
+              unarchivedTweets.map(
+                t => t.retweeted_status
+                ? <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t.retweeted_status} retweetedBy={t.user} />
+                : <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t} />
+              )
+            ) : <div ref='empty' style={{textAlign: 'center', margin: space1}}>Your inbox is empty!</div>
           }
         </div>
       )

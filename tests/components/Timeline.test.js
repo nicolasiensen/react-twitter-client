@@ -41,16 +41,6 @@ it('shows the original tweet of a retweet', () => {
   expect(retweetComponent.props.retweetedBy).toBe(retweet.user)
 })
 
-it('shows only unarchived tweets', () => {
-  const archivedTweet = fakeTweets[0].retweeted_status ? fakeTweets[0].retweeted_status : fakeTweets[0]
-  const div = document.createElement('div')
-  const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-  timeline.archiveTweet(archivedTweet)
-  const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
-
-  expect(tweets.map(t => t.props.tweet.id)).not.toContain(archivedTweet.id)
-})
-
 it('initializes the archivedTweetsIds state from local storage', () => {
   const archivedTweetsIds = ['123', '456']
   storage.setItem('archivedTweetsIds', archivedTweetsIds)
@@ -59,6 +49,27 @@ it('initializes the archivedTweetsIds state from local storage', () => {
   const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
 
   expect(timeline.state.archivedTweetsIds).toEqual(archivedTweetsIds)
+})
+
+
+describe('#render', () => {
+  it('shows only unarchived tweets', () => {
+    const archivedTweet = fakeTweets[0].retweeted_status ? fakeTweets[0].retweeted_status : fakeTweets[0]
+    const div = document.createElement('div')
+    const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
+    timeline.archiveTweet(archivedTweet)
+    const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
+
+    expect(tweets.map(t => t.props.tweet.id)).not.toContain(archivedTweet.id)
+  })
+
+  it('shows a message when there is no unarchived tweet', () => {
+    const div = document.createElement('div')
+    const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
+    fakeTweets.forEach((tweet) => timeline.archiveTweet(tweet.retweeted_status ? tweet.retweeted_status : tweet))
+
+    expect(timeline.refs.empty).toBeDefined()
+  })
 })
 
 describe('#archiveTweet', () => {
