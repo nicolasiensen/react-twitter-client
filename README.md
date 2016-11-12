@@ -23,7 +23,7 @@ npm run test
 This app can be also used as a Chrome extension, to install it to your extensions you will have to generate a build with a manifest file:
 
 ```shell
-REACT_APP_API_HOST=http://localhost:3000 npm run build && cp manifest.json build
+REACT_APP_API_HOST=http://localhost:3000 npm run build
 ```
 
 Now you can install it as a Chrome extension using the `build` folder.
