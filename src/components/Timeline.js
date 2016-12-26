@@ -11,34 +11,32 @@ class Timeline extends Component {
     super(props)
     this.archiveTweet = this.archiveTweet.bind(this)
     this.getUnarchivedTweets = this.getUnarchivedTweets.bind(this)
-
-    this.state = {
-      tweets: [],
-      loading: false,
-      archivedTweetsIds: storage.getItem('archivedTweetsIds') || []
-    }
+    storage.setItem('archivedTweetsIds', storage.getItem('archivedTweetsIds') || [])
+    storage.setItem('loading', false)
   }
 
   componentWillMount () {
-    this.setState({loading: true})
+    storage.setItem('loading', true)
     loadTweets(this.props.accessToken.token, this.props.accessToken.secret).end(
       (err, res) => {
-        this.setState({tweets: res.body, loading: false})
+        storage.setItem('loading', false)
+        storage.setItem('tweets', res.body)
+        this.forceUpdate()
       }
     )
   }
 
   archiveTweet (tweet) {
-    this.setState({archivedTweetsIds: this.state.archivedTweetsIds.concat(tweet.id)})
-    storage.setItem('archivedTweetsIds', this.state.archivedTweetsIds.concat(tweet.id))
+    storage.setItem('archivedTweetsIds', storage.getItem('archivedTweetsIds').concat(tweet.id))
+    this.forceUpdate()
   }
 
   getUnarchivedTweets () {
-    return this.state.tweets.filter(
+    return storage.getItem('tweets').filter(
       t => (
         t.retweeted_status
-        ? !this.state.archivedTweetsIds.includes(t.retweeted_status.id)
-        : !this.state.archivedTweetsIds.includes(t.id)
+        ? !storage.getItem('archivedTweetsIds').includes(t.retweeted_status.id)
+        : !storage.getItem('archivedTweetsIds').includes(t.id)
       )
     )
   }
@@ -47,7 +45,7 @@ class Timeline extends Component {
     const unarchivedTweets = this.getUnarchivedTweets()
 
     return (
-      this.state.loading
+      storage.getItem('loading')
       ? <div ref='loading' style={{textAlign: 'center', margin: space1}}>Loading...</div>
       : (
         <div>
