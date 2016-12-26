@@ -11,8 +11,6 @@ class Timeline extends Component {
     super(props)
     this.archiveTweet = this.archiveTweet.bind(this)
     this.getUnarchivedTweets = this.getUnarchivedTweets.bind(this)
-    storage.setItem('archivedTweetsIds', storage.getItem('archivedTweetsIds') || [])
-    storage.setItem('loading', false)
   }
 
   componentWillMount () {
