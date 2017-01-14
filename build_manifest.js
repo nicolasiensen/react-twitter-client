@@ -7,10 +7,20 @@ function writeManifest (options) {
     {
       manifest_version: 2,
       version: "0.1",
-      name: "React Twitter Client",
+      name: "T-Inbox",
       description: "This extension shows your unread tweets",
+      "icons": {
+        "16": "icons/t-inbox16.png",
+        "48": "icons/t-inbox48.png",
+        "128": "icons/t-inbox128.png"
+      },
       browser_action: {
-        default_icon: "favicon.ico",
+        default_icon: {
+          "16": "icons/t-inbox16.png",
+          "48": "icons/t-inbox48.png",
+          "128": "icons/t-inbox128.png"
+        },
+        default_title: "T-Inbox",
         default_popup: "index.html"
       },
       permissions: [
