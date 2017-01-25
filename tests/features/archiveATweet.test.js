@@ -5,7 +5,7 @@ import ReactTestUtils from 'react-addons-test-utils'
 import App from './../../src/components/App'
 import Timeline from './../../src/components/Timeline'
 import Tweet from './../../src/components/Tweet'
-import storage from './../../src/lib/storage'
+import * as storage from './../../src/lib/storage'
 
 import mockLocalStorage from './../mockLocalStorage'
 mockLocalStorage()
@@ -16,7 +16,9 @@ mockRequest(`${process.env.REACT_APP_API_HOST}/`, fakeTweets)
 
 it('hides the archived tweets from the timeline', () => {
   // Login
-  storage.setItem('accessToken', {token: 'AT123456', secret: 'AT654321'})
+  storage.init()
+  storage.setAccessToken({token: 'AT123456', secret: 'AT654321'})
+  storage.finishLoadingTweets(fakeTweets)
 
   const div = document.createElement('div')
   const app = ReactDOM.render(<App />, div)

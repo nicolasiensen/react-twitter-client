@@ -5,7 +5,7 @@ import ReactTestUtils from 'react-addons-test-utils'
 import App from './../../src/components/App'
 import Timeline from './../../src/components/Timeline'
 import Login from './../../src/components/Login'
-import storage from './../../src/lib/storage'
+import * as storage from './../../src/lib/storage'
 
 import mockLocalStorage from './../mockLocalStorage'
 mockLocalStorage()
@@ -23,7 +23,8 @@ it('renders the authentication when there is no access token', () => {
 })
 
 it("renders the timeline when there is an access token", () => {
-  storage.setItem('accessToken', {token: '123', secret: '321'})
+  storage.init()
+  storage.setAccessToken({token: '123', secret: '321'})
   const div = document.createElement('div')
   const component = ReactDOM.render(<App />, div)
   const timeline = ReactTestUtils.scryRenderedComponentsWithType(component, Timeline)

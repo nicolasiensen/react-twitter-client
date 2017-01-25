@@ -4,7 +4,7 @@ import { StyleRoot } from 'radium'
 import Login from './Login'
 import Timeline from './Timeline'
 import Layout from './Layout'
-import storage from './../lib/storage'
+import * as storage from './../lib/storage'
 
 class App extends Component {
   constructor (props) {
@@ -18,12 +18,12 @@ class App extends Component {
   }
 
   saveAccessToken (accessToken) {
-    storage.setItem('accessToken', accessToken)
+    storage.setAccessToken(accessToken)
     this.loadAccessToken()
   }
 
   loadAccessToken () {
-    this.setState({accessToken: storage.getItem('accessToken')})
+    this.setState({accessToken: storage.getAccessToken()})
   }
 
   render() {

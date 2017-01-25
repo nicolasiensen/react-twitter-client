@@ -5,7 +5,7 @@ import Button from './Button'
 import Input from './Input'
 import Text from './Text'
 import * as api from './../lib/api'
-import storage from './../lib/storage'
+import * as storage from './../lib/storage'
 import { space2 } from './../lib/styles'
 
 class Login extends Component {
@@ -27,7 +27,7 @@ class Login extends Component {
 
     api.loadRequestToken().end(
       (err, res) => {
-        storage.setItem('requestToken', res.body)
+        storage.setRequestToken(res.body)
         this.setState({loadingRequestToken: false})
         window.open(res.body.authorize_url)
       }
@@ -39,11 +39,11 @@ class Login extends Component {
   }
 
   submitPin () {
-    api.loadAccessToken(
-      storage.getItem('requestToken').token,
-      storage.getItem('requestToken').secret,
-      this.state.pin
-    ).end((err, res) => this.props.onAccessTokenLoaded(res.body))
+    const requestToken = storage.getRequestToken()
+
+    api.loadAccessToken(requestToken.token, requestToken.secret, this.state.pin).end(
+      (err, res) => this.props.onAccessTokenLoaded(res.body)
+    )
   }
 
   render() {

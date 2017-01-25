@@ -5,7 +5,7 @@ import ReactTestUtils from 'react-addons-test-utils'
 import Timeline from './../../src/components/Timeline'
 import Tweet from './../../src/components/Tweet'
 
-import storage from './../../src/lib/storage'
+import * as storage from './../../src/lib/storage'
 import mockLocalStorage from './../mockLocalStorage'
 mockLocalStorage()
 
@@ -13,15 +13,20 @@ import fakeTweets from './../tweets'
 import { mockRequest } from 'superagent'
 mockRequest(`${process.env.REACT_APP_API_HOST}/`, fakeTweets)
 
+beforeEach(() => {
+  storage.init()
+})
+
 it('shows a loading message when it is loading tweets', () => {
+  storage.startLoadingTweets()
   const div = document.createElement('div')
   const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-  timeline.setState({loading: true})
 
   expect(timeline.refs.loading).toBeDefined()
 })
 
 it('shows a list of tweets', () => {
+  storage.finishLoadingTweets(fakeTweets)
   const div = document.createElement('div')
   const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
   const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
@@ -30,6 +35,7 @@ it('shows a list of tweets', () => {
 })
 
 it('shows the original tweet of a retweet', () => {
+  storage.finishLoadingTweets(fakeTweets)
   const div = document.createElement('div')
   const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
   const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
@@ -37,20 +43,17 @@ it('shows the original tweet of a retweet', () => {
   const retweetIndex = fakeTweets.indexOf(retweet)
   const retweetComponent = tweets[retweetIndex]
 
-  expect(retweetComponent.props.tweet).toBe(retweet.retweeted_status)
-  expect(retweetComponent.props.retweetedBy).toBe(retweet.user)
+  expect(retweetComponent.props.tweet).toEqual(retweet.retweeted_status)
+  expect(retweetComponent.props.retweetedBy).toEqual(retweet.user)
 })
 
-it('initializes the archivedTweetsIds state from local storage', () => {
-  const archivedTweetsIds = ['123', '456']
-  storage.setItem('archivedTweetsIds', archivedTweetsIds)
-
+it('add an event listener to update the component when the storage is updated', () => {
+  window.addEventListener = jest.fn()
   const div = document.createElement('div')
   const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
 
-  expect(timeline.state.archivedTweetsIds).toEqual(archivedTweetsIds)
+  expect(window.addEventListener).toBeCalledWith('storage', timeline.handleStorageChange)
 })
-
 
 describe('#render', () => {
   it('shows only unarchived tweets', () => {
@@ -73,21 +76,12 @@ describe('#render', () => {
 })
 
 describe('#archiveTweet', () => {
-  it('adds the archived tweet id in a list of archived tweets', () => {
-    const div = document.createElement('div')
-    const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-
-    timeline.archiveTweet(fakeTweets[0])
-
-    expect(timeline.state.archivedTweetsIds).toContain(fakeTweets[0].id)
-  })
-
   it('persists the list of archived tweets', () => {
     const div = document.createElement('div')
     const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
 
     timeline.archiveTweet(fakeTweets[0])
 
-    expect(storage.getItem('archivedTweetsIds')).toContain(fakeTweets[0].id)
+    expect(storage.getUnarchivedTweets().map(t => t.id)).not.toContain(fakeTweets[0].id)
   })
 })

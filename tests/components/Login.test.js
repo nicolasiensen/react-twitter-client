@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Login from './../../src/components/Login'
-import storage from './../../src/lib/storage'
+import * as storage from './../../src/lib/storage'
 
 import mockLocalStorage from './../mockLocalStorage'
 mockLocalStorage()
@@ -28,7 +28,7 @@ it('stores the request token', () => {
 
   login.redirectToAuthorizeUrl()
 
-  expect(storage.getItem('requestToken')).toEqual({token: 'RT123456', secret: 'RT654321'})
+  expect(storage.getRequestToken()).toEqual({token: 'RT123456', secret: 'RT654321'})
 })
 
 it('updates the state when the pin input is changed', () => {
