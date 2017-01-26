@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## Getting started
-In order to have this app fully functional you need to have [the API](https://github.com/nicolasiensen/react-twitter-api) running as well.
+In order to have this app fully functional you need to have [the API](https://github.com/nicolasiensen/t-inbox-api) running as well.
 
 If you already have the API in place, you can run the following commands:
 
