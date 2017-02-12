@@ -15,3 +15,7 @@ if (document.getElementById('root')) {
 } else {
   background.init()
 }
+
+if (process.env.REACT_APP_BROWSER_MODE_ON) {
+  background.loadTweets()
+}

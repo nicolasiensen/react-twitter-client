@@ -18,7 +18,7 @@ function updateBadgeText() {
   chrome.browserAction.setBadgeText({text: total === 0 ? '' : total > 99 ? '99+' : total.toString()})
 }
 
-function loadTweets() {
+export function loadTweets() {
   const accessToken = storage.getAccessToken()
 
   if (accessToken) {
