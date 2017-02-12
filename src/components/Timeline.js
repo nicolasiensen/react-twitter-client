@@ -28,14 +28,18 @@ class Timeline extends Component {
     return (
       <div>
         {
-          unarchivedTweets.length > 0
-          ? (
+          unarchivedTweets.length === 0 && !storage.isLoading() && (
+            <div ref='empty' style={{textAlign: 'center', margin: space1}}>Your inbox is empty!</div>
+          )
+        }
+        {
+          unarchivedTweets.length > 0 && (
             unarchivedTweets.map(
               t => t.retweeted_status
               ? <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t.retweeted_status} retweetedBy={t.user} />
               : <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t} />
             )
-          ) : <div ref='empty' style={{textAlign: 'center', margin: space1}}>Your inbox is empty!</div>
+          )
         }
         {
           storage.isLoading() && <div ref='loading' style={{textAlign: 'center', margin: space1}}>Loading...</div>
