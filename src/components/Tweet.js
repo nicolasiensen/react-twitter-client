@@ -2,7 +2,27 @@ import React, { Component } from 'react'
 import moment from 'moment'
 
 import IconButton from './IconButton'
-import { borderRadius, space1, space2, lightGray, white, h6, fontBold } from './../lib/styles'
+import { borderRadius, space1, space2, lightGray, white, h6, fontBold, blue } from './../lib/styles'
+
+function linkify(tweet) {
+  let newText = tweet.text
+
+  tweet.entities.urls.forEach(url => {
+    newText = newText.replace(
+      url.url,
+      `<a style='color: ${blue}' target='_blank' href='${url.expanded_url}'>${url.url}</a>`
+    )
+  })
+
+  tweet.extended_entities && tweet.extended_entities.media.forEach(media => {
+    newText = newText.replace(
+      media.url,
+      `<a style='color: ${blue}' target='_blank' href='${media.expanded_url}'>${media.url}</a>`
+    )
+  })
+
+  return newText
+}
 
 class Tweet extends Component {
   constructor (props) {
@@ -28,7 +48,7 @@ class Tweet extends Component {
             <span style={{fontWeight: fontBold}}>{tweet.user.name}</span>&nbsp;
             <span style={{fontSize: h6}}>{moment(tweet.created_at, 'ddd MMM DD HH:mm:ss Z YYYY').fromNow()}</span>
           </div>
-          <div dangerouslySetInnerHTML={{__html: tweet.text}}></div>
+          <div dangerouslySetInnerHTML={{__html: linkify(tweet)}}></div>
           <div style={{marginTop: space1}}>
             <IconButton ref='archiveButton' onClick={this.archive} icon='archive' />
           </div>
