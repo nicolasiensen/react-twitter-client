@@ -6,9 +6,9 @@ function writeManifest (options) {
   const manifest = JSON.stringify(
     {
       manifest_version: 2,
-      version: "0.1",
+      version: "1.0",
       name: "T-Inbox",
-      description: "This extension shows your unread tweets",
+      description: "Receive tweets and organize them just like as an inbox",
       "icons": {
         "16": "icons/t-inbox16.png",
         "48": "icons/t-inbox48.png",
