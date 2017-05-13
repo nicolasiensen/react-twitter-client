@@ -3,38 +3,43 @@ import React, { Component } from 'react'
 import Tweet from './Tweet'
 
 import { space1 } from './../lib/styles'
-import * as storage from './../lib/storage'
+import * as api from './../lib/api'
 
 class Timeline extends Component {
   constructor (props) {
     super(props)
+    this.state = { tweets: [], isLoading: false, hasError: false }
     this.archiveTweet = this.archiveTweet.bind(this)
-    this.handleStorageChange = this.handleStorageChange.bind(this)
-    window.addEventListener('storage', this.handleStorageChange)
   }
 
-  handleStorageChange() {
-    this.forceUpdate()
+  async componentDidMount() {
+    try {
+      this.setState({isLoading: true})
+      const response = await api.loadTweets(this.props.accessToken.token, this.props.accessToken.secret)
+      this.setState({tweets: response.body.tweets, isLoading: false})
+    } catch(e) {
+      this.setState({hasError: true})
+      throw(e)
+    } finally {
+      this.setState({isLoading: false})
+    }
   }
 
   archiveTweet (tweet) {
-    storage.archiveTweet(tweet.id)
-    this.forceUpdate()
+    // Call the API endpoint to archive
   }
 
   render () {
-    const unarchivedTweets = storage.getUnarchivedTweets()
-
     return (
       <div>
         {
-          unarchivedTweets.length === 0 && !storage.isLoading() && (
+          this.state.tweets.length === 0 && !this.state.isLoading && !this.state.hasError && (
             <div ref='empty' style={{textAlign: 'center', margin: space1}}>Your inbox is empty!</div>
           )
         }
         {
-          unarchivedTweets.length > 0 && (
-            unarchivedTweets.map(
+          this.state.tweets.length > 0 && (
+            this.state.tweets.map(
               t => t.retweeted_status
               ? <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t.retweeted_status} retweetedBy={t.user} />
               : <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t} />
@@ -42,7 +47,14 @@ class Timeline extends Component {
           )
         }
         {
-          storage.isLoading() && <div ref='loading' style={{textAlign: 'center', margin: space1}}>Loading...</div>
+          this.state.isLoading && <div ref='loading' style={{textAlign: 'center', margin: space1}}>Loading...</div>
+        }
+        {
+          this.state.hasError && (
+            <div ref='error' style={{textAlign: 'center', margin: space1}}>
+              There was an error while loading your timeline
+            </div>
+          )
         }
       </div>
     )

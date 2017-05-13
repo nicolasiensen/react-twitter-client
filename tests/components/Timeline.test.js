@@ -4,84 +4,89 @@ import ReactTestUtils from 'react-addons-test-utils'
 
 import Timeline from './../../src/components/Timeline'
 import Tweet from './../../src/components/Tweet'
-
-import * as storage from './../../src/lib/storage'
-import mockLocalStorage from './../mockLocalStorage'
-mockLocalStorage()
+import * as api from './../../src/lib/api'
 
 import fakeTweets from './../tweets'
-import { mockRequest } from 'superagent'
-mockRequest(`${process.env.REACT_APP_API_HOST}/`, fakeTweets)
+import afterPromises from './../afterPromises'
+
+let timeline
+jest.mock('./../../src/lib/api')
+
+const renderComponent = (props) => {
+  const div = document.createElement('div')
+  return ReactDOM.render(
+    <Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} {...props} />, div
+  )
+}
 
 beforeEach(() => {
-  storage.init()
+  api.loadTweets = jest.fn(() => new Promise(resolve => resolve({ body: { tweets: fakeTweets } })))
+  timeline = renderComponent()
 })
 
-it('shows a loading message when it is loading tweets', () => {
-  storage.startLoadingTweets()
-  const div = document.createElement('div')
-  const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-
+it('should render the loading message', () => {
   expect(timeline.refs.loading).toBeDefined()
 })
 
-it('shows a list of tweets', () => {
-  storage.finishLoadingTweets(fakeTweets)
-  const div = document.createElement('div')
-  const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-  const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
-
-  expect(tweets.length).toBe(fakeTweets.length)
-})
-
-it('shows the original tweet of a retweet', () => {
-  storage.finishLoadingTweets(fakeTweets)
-  const div = document.createElement('div')
-  const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-  const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
-  const retweet = fakeTweets.find(t => t.retweeted_status)
-  const retweetIndex = fakeTweets.indexOf(retweet)
-  const retweetComponent = tweets[retweetIndex]
-
-  expect(retweetComponent.props.tweet).toEqual(retweet.retweeted_status)
-  expect(retweetComponent.props.retweetedBy).toEqual(retweet.user)
-})
-
-it('add an event listener to update the component when the storage is updated', () => {
-  window.addEventListener = jest.fn()
-  const div = document.createElement('div')
-  const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-
-  expect(window.addEventListener).toBeCalledWith('storage', timeline.handleStorageChange)
-})
-
-describe('#render', () => {
-  it('shows only unarchived tweets', () => {
-    const archivedTweet = fakeTweets[0].retweeted_status ? fakeTweets[0].retweeted_status : fakeTweets[0]
-    const div = document.createElement('div')
-    const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-    timeline.archiveTweet(archivedTweet)
-    const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
-
-    expect(tweets.map(t => t.props.tweet.id)).not.toContain(archivedTweet.id)
+describe('when the tweets are loaded', () => {
+  it('should not render the loading message', done => {
+    afterPromises(done, () => expect(timeline.refs.loading).not.toBeDefined())
   })
 
-  it('shows a message when there is no unarchived tweet', () => {
-    const div = document.createElement('div')
-    const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
-    fakeTweets.forEach((tweet) => timeline.archiveTweet(tweet.retweeted_status ? tweet.retweeted_status : tweet))
+  it('should render the list of tweets', done => {
+    afterPromises(done, () => {
+      const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
+      expect(tweets.length).toBe(fakeTweets.length)
+    })
+  })
 
-    expect(timeline.refs.empty).toBeDefined()
+  it('should render the original tweet of a retweet', done => {
+    afterPromises(done, () => {
+      const tweets = ReactTestUtils.scryRenderedComponentsWithType(timeline, Tweet)
+      const retweet = fakeTweets.find(t => t.retweeted_status)
+      const retweetIndex = fakeTweets.indexOf(retweet)
+      const retweetComponent = tweets[retweetIndex]
+
+      expect(retweetComponent.props.tweet).toEqual(retweet.retweeted_status)
+      expect(retweetComponent.props.retweetedBy).toEqual(retweet.user)
+    })
+  })
+
+  describe('when the tweets list is empty', () => {
+    it('should render an empty message', done => {
+      api.loadTweets = jest.fn(
+        () => new Promise(
+          resolve => resolve({ body: { tweets: [] } })
+        )
+      )
+
+      timeline = renderComponent()
+
+      afterPromises(done, () => {
+        expect(timeline.refs.empty).toBeDefined()
+      })
+    })
   })
 })
 
-describe('#archiveTweet', () => {
-  it('persists the list of archived tweets', () => {
-    const div = document.createElement('div')
-    const timeline = ReactDOM.render(<Timeline accessToken={{token: 'AT123456', secret: 'AT654321'}} />, div)
+describe('when the tweets fail to load', () => {
+  let error
 
-    timeline.archiveTweet(fakeTweets[0])
+  beforeEach(() => {
+    error = new Error
 
-    expect(storage.getUnarchivedTweets().map(t => t.id)).not.toContain(fakeTweets[0].id)
+    api.loadTweets = jest.fn(
+      () => new Promise(
+        (resolve, reject) => reject(error)
+      )
+    )
+
+    timeline = renderComponent()
+  })
+
+  it('should render an error message', done => {
+    afterPromises(done, () => {
+      expect(timeline.refs.error).toBeDefined()
+    })
   })
 })
