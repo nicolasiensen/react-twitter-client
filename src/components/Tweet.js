@@ -14,12 +14,14 @@ function linkify(tweet) {
     )
   })
 
-  tweet.extended_entities && tweet.extended_entities.media.forEach(media => {
-    newText = newText.replace(
-      media.url,
-      `<a style='color: ${blue}' target='_blank' href='${media.expanded_url}'>${media.url}</a>`
-    )
-  })
+  if (tweet.extended_entities) {
+    tweet.extended_entities.media.forEach(media => {
+      newText = newText.replace(
+        media.url,
+        `<a style='color: ${blue}' target='_blank' href='${media.expanded_url}'>${media.url}</a>`
+      )
+    })
+  }
 
   return newText
 }
