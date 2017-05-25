@@ -25,8 +25,9 @@ class Timeline extends Component {
     }
   }
 
-  archiveTweet (tweet) {
-    // Call the API endpoint to archive
+  async archiveTweet (tweet) {
+    this.setState({tweets: this.state.tweets.filter(t => t.id !== tweet.id)});
+    await api.archiveTweet(this.props.accessToken.token, this.props.accessToken.secret, tweet.id_str);
   }
 
   render () {
@@ -38,12 +39,8 @@ class Timeline extends Component {
           )
         }
         {
-          this.state.tweets.length > 0 && (
-            this.state.tweets.map(
-              t => t.retweeted_status
-              ? <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t.retweeted_status} retweetedBy={t.user} />
-              : <Tweet key={t.id} onArchive={this.archiveTweet} tweet={t} />
-            )
+          this.state.tweets.length > 0 && this.state.tweets.map(
+            tweet => <Tweet key={tweet.id} onArchive={this.archiveTweet} tweet={tweet} />
           )
         }
         {

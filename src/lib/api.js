@@ -18,3 +18,10 @@ export function loadAccessToken (oauthToken, oauthTokenSecret, oauthVerifier) {
     oauth_verifier: oauthVerifier
   })
 }
+
+export function archiveTweet (accessToken, accessTokenSecret, tweetId) {
+  return request.put(`${process.env.REACT_APP_API_HOST}/tweets/${tweetId}/archive`).send({
+    twitter_access_token: accessToken,
+    twitter_access_token_secret: accessTokenSecret
+  })
+}
