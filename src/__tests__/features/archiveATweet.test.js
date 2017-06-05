@@ -2,19 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 
-import App from './../../src/components/App'
-import Timeline from './../../src/components/Timeline'
-import Tweet from './../../src/components/Tweet'
-import * as storage from './../../src/lib/storage'
-import * as api from './../../src/lib/api'
-import afterPromises from './../afterPromises'
+import App from './../../components/App'
+import Timeline from './../../components/Timeline'
+import Tweet from './../../components/Tweet'
+import * as storage from './../../lib/storage'
+import * as api from './../../lib/api'
+import afterPromises from './../../lib/afterPromises'
 
-jest.mock('./../../src/lib/api')
+jest.mock('./../../lib/api')
 
-import mockLocalStorage from './../mockLocalStorage'
+import mockLocalStorage from './../../lib/mockLocalStorage'
 mockLocalStorage()
 
-import fakeTweets from './../tweets.json'
+import fakeTweets from './../../lib/tweets.json'
 
 beforeEach(() => {
   api.loadTweets = jest.fn(() => new Promise(resolve => resolve({ body: { tweets: fakeTweets } })));

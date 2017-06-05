@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 import moment from 'moment'
 
-import Tweet from './../../src/components/Tweet'
-import fakeTweets from './../tweets'
+import Tweet from './../../components/Tweet'
+import fakeTweets from './../../lib/tweets'
 
 const tweet = fakeTweets.find(t => !t.retweeted_status)
 const retweetedTweet = fakeTweets.find(t => t.retweeted_status)

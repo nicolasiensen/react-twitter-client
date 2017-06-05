@@ -2,17 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 
-import Timeline from './../../src/components/Timeline'
-import Tweet from './../../src/components/Tweet'
-import * as api from './../../src/lib/api'
+import Timeline from './../../components/Timeline'
+import Tweet from './../../components/Tweet'
+import * as api from './../../lib/api'
 
-import fakeTweets from './../tweets'
-import afterPromises from './../afterPromises'
+import fakeTweets from './../../lib/tweets'
+import afterPromises from './../../lib/afterPromises'
 
 let timeline
 const accessToken = { token: 'AT123456', secret: 'AT654321' };
 
-jest.mock('./../../src/lib/api')
+jest.mock('./../../lib/api')
 
 const renderComponent = (props) => {
   const div = document.createElement('div')
@@ -20,7 +20,10 @@ const renderComponent = (props) => {
 }
 
 beforeEach(() => {
-  api.loadTweets = jest.fn(() => new Promise(resolve => resolve({ body: { tweets: fakeTweets } })))
+  api.loadTweets = jest.fn(
+    () => new Promise(resolve => {})
+  )
+
   timeline = renderComponent()
 })
 
@@ -29,6 +32,15 @@ it('should render the loading message', () => {
 })
 
 describe('when the tweets are loaded', () => {
+  beforeEach(() => {
+    api.loadTweets = jest.fn(
+      () => new Promise(
+        resolve => resolve({ body: { tweets: fakeTweets } })
+      )
+    )
+    timeline = renderComponent()
+  })
+
   it('should not render the loading message', done => {
     afterPromises(done, () => expect(timeline.refs.loading).not.toBeDefined())
   })

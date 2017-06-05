@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import Radium from 'radium'
+import injectSheet from 'react-jss'
 
 import { space2, lightGray, smBreakpoint, black } from './../lib/styles'
 
@@ -21,20 +21,14 @@ const styles = {
   }
 }
 
-class Layout extends Component {
-  render() {
-    return (
-      <div style={styles.container}>
-        <div style={styles.content}>
-          {this.props.children}
-        </div>
-      </div>
-    )
-  }
-}
+export const Layout = ({ classes, children }) => (
+  <div className={classes.container}>
+    <div className={classes.content}>{children}</div>
+  </div>
+)
 
 Layout.propTypes = {
   children: PropTypes.object
 }
 
-export default Radium(Layout)
+export default injectSheet(styles)(Layout)

@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 
-import Input from './../../src/components/Input'
-import { borderRadius } from './../../src/lib/styles'
+import Input from './../../components/Input'
+import { borderRadius } from './../../lib/styles'
 
 it('renders rounded border in every edge of the input element when prop inline is false', () => {
   const div = document.createElement('div')

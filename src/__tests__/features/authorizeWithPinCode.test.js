@@ -2,16 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 
-import App from './../../src/components/App'
-import Login from './../../src/components/Login'
-import Timeline from './../../src/components/Timeline'
-import Tweet from './../../src/components/Tweet'
-import * as storage from './../../src/lib/storage'
+import App from './../../components/App'
+import Login from './../../components/Login'
+import Timeline from './../../components/Timeline'
+import Tweet from './../../components/Tweet'
+import * as storage from './../../lib/storage'
 
-import mockLocalStorage from './../mockLocalStorage'
+import mockLocalStorage from './../../lib/mockLocalStorage'
 mockLocalStorage()
 
-import fakeTweets from './../tweets.json'
+import fakeTweets from './../../lib/tweets.json'
 import { mockRequest } from 'superagent'
 mockRequest(`${process.env.REACT_APP_API_HOST}/`, {tweets: fakeTweets})
 mockRequest(`${process.env.REACT_APP_API_HOST}/request_token`, {token: 'RT123456', secret: 'RT654321'})
