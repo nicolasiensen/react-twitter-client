@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { white, space2 } from './../lib/styles'
 
 class Box extends Component {
@@ -12,8 +13,8 @@ class Box extends Component {
 }
 
 Box.propTypes = {
-  children: React.PropTypes.array,
-  style: React.PropTypes.object
+  children: PropTypes.array,
+  style: PropTypes.object
 }
 
 export default Box

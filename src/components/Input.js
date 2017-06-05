@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { space1, borderRadius, inputBorderWidth, gray, h4 } from './../lib/styles'
 
 class Input extends Component {
@@ -23,8 +24,8 @@ class Input extends Component {
 }
 
 Input.propTypes = {
-  inline: React.PropTypes.bool,
-  style: React.PropTypes.object,
+  inline: PropTypes.bool,
+  style: PropTypes.object,
 }
 
 export default Input

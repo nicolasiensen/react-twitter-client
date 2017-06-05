@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Tweet from './Tweet'
 
@@ -19,7 +20,6 @@ class Timeline extends Component {
       this.setState({tweets: response.body.tweets, isLoading: false})
     } catch(e) {
       this.setState({hasError: true})
-      throw(e)
     } finally {
       this.setState({isLoading: false})
     }
@@ -59,9 +59,9 @@ class Timeline extends Component {
 }
 
 Timeline.propTypes = {
-  accessToken: React.PropTypes.shape({
-    token: React.PropTypes.string.isRequired,
-    secret: React.PropTypes.string.isRequired
+  accessToken: PropTypes.shape({
+    token: PropTypes.string.isRequired,
+    secret: PropTypes.string.isRequired
   })
 }
 

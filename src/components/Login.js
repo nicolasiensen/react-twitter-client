@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Box from './Box'
 import Button from './Button'
@@ -72,7 +73,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  onAccessTokenLoaded: React.PropTypes.func.isRequired
+  onAccessTokenLoaded: PropTypes.func.isRequired
 }
 
 export default Login

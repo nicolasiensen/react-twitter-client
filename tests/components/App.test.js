@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactTestUtils from 'react-addons-test-utils'
+import ReactTestUtils from 'react-dom/test-utils'
 
 import App from './../../src/components/App'
 import Timeline from './../../src/components/Timeline'
@@ -12,7 +12,7 @@ mockLocalStorage()
 
 import { mockRequest } from 'superagent'
 import fakeTweets from './../tweets.json'
-mockRequest(`${process.env.REACT_APP_API_HOST}/`, fakeTweets.slice(0, 5))
+mockRequest(`${process.env.REACT_APP_API_HOST}/`, { tweets: fakeTweets.slice(0, 5) })
 mockRequest(`${process.env.REACT_APP_API_HOST}/request_token`, {})
 
 it('renders the authentication when there is no access token', () => {

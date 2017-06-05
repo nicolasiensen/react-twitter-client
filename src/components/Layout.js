@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Radium from 'radium'
 
 import { space2, lightGray, smBreakpoint, black } from './../lib/styles'
@@ -33,7 +34,7 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  children: React.PropTypes.object
+  children: PropTypes.object
 }
 
 export default Radium(Layout)

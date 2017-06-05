@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 
 import IconButton from './IconButton'
@@ -61,19 +62,19 @@ class Tweet extends Component {
 }
 
 Tweet.propTypes = {
-  tweet: React.PropTypes.shape({
-    text: React.PropTypes.string.isRequired,
-    created_at: React.PropTypes.string.isRequired,
-    user: React.PropTypes.shape({
-      profile_image_url: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
+  tweet: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      profile_image_url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     })
   }),
-  retweetedBy: React.PropTypes.shape({
-    profile_image_url: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
+  retweetedBy: PropTypes.shape({
+    profile_image_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }),
-  onArchive: React.PropTypes.func,
+  onArchive: PropTypes.func,
 }
 
 export default Tweet

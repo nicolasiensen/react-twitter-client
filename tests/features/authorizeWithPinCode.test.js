@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactTestUtils from 'react-addons-test-utils'
+import ReactTestUtils from 'react-dom/test-utils'
 
 import App from './../../src/components/App'
 import Login from './../../src/components/Login'
@@ -13,7 +13,7 @@ mockLocalStorage()
 
 import fakeTweets from './../tweets.json'
 import { mockRequest } from 'superagent'
-mockRequest(`${process.env.REACT_APP_API_HOST}/`, fakeTweets)
+mockRequest(`${process.env.REACT_APP_API_HOST}/`, {tweets: fakeTweets})
 mockRequest(`${process.env.REACT_APP_API_HOST}/request_token`, {token: 'RT123456', secret: 'RT654321'})
 mockRequest(`${process.env.REACT_APP_API_HOST}/access_token`, {token: 'AT123456', secret: 'AT654321'})
 

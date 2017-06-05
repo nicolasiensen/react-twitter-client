@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { space1 } from './../lib/styles'
 
 class Text extends Component {
@@ -12,7 +13,7 @@ class Text extends Component {
 }
 
 Text.propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 }
 
 export default Text

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Radium from 'radium'
 import tinycolor from 'tinycolor2'
 
@@ -44,8 +45,8 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  inline: React.PropTypes.bool,
-  style: React.PropTypes.object,
+  inline: PropTypes.bool,
+  style: PropTypes.object,
 }
 
 export default Radium(Button)
