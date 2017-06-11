@@ -5,3 +5,10 @@ jest.mock('./lib/chrome', () => (
     }
   }
 ))
+
+jest.mock('./lib/env', () => (
+  {
+    REACT_APP_EXTENSION_ID: "extension-id",
+    REACT_APP_API_HOST: "http://apihost.com"
+  }
+))
