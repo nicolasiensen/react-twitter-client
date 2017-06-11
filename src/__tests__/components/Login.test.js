@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom'
 
 import Login from './../../components/Login'
 import * as storage from './../../lib/storage'
-
 import mockLocalStorage from './../../lib/mockLocalStorage'
-mockLocalStorage()
-
+import { REACT_APP_API_HOST } from './../../lib/env'
 import { mockRequest } from 'superagent'
-mockRequest(`${process.env.REACT_APP_API_HOST}/request_token`, {token: 'RT123456', secret: 'RT654321'})
-mockRequest(`${process.env.REACT_APP_API_HOST}/access_token`, {token: 'AT123456', secret: 'AT654321'})
+
+mockLocalStorage()
+mockRequest(`${REACT_APP_API_HOST}/request_token`, {token: 'RT123456', secret: 'RT654321'})
+mockRequest(`${REACT_APP_API_HOST}/access_token`, {token: 'AT123456', secret: 'AT654321'})
 
 it('disables the authorize button when loading the request token', () => {
   const div = document.createElement('div')

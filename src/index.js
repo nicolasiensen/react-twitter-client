@@ -1,11 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
-import * as storage from './lib/storage'
 import * as background from './lib/background'
 import './index.css'
-
-storage.init()
 
 if (document.getElementById('root')) {
   ReactDOM.render(
@@ -14,8 +11,4 @@ if (document.getElementById('root')) {
   )
 } else {
   background.init()
-}
-
-if (process.env.REACT_APP_BROWSER_MODE_ON) {
-  background.loadTweets()
 }

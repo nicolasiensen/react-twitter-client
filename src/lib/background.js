@@ -1,38 +1,43 @@
-/* global chrome:true */
-
 import * as storage from './storage'
 import * as api from './api'
+import chrome from './chrome'
+
+let tweetsCount = 0
 
 export function init() {
-  updateBadgeText()
-  window.addEventListener('storage', event => updateBadgeText())
-  window.addEventListener('storage', event => event.key === 'accessToken' && loadTweets())
-
   loadTweets()
+
   chrome.alarms.create('loadTweets', {periodInMinutes: 1})
   chrome.alarms.onAlarm.addListener(event => event.name === 'loadTweets' && loadTweets())
+  chrome.runtime.onMessage.addListener(handleChromeMessage)
+  chrome.runtime.onMessageExternal.addListener(handleChromeMessage)
+}
+
+function handleChromeMessage(request) {
+  console.log("message received!")
+  if(request.action === 'decreaseTweetCount') {
+    tweetsCount -= 1
+  } else if (request.action === 'updateTweetCount') {
+    tweetsCount = request.value
+  }
+
+  updateBadgeText()
 }
 
 function updateBadgeText() {
-  const total = storage.getUnarchivedTweets().length
-  chrome.browserAction.setBadgeText({text: total === 0 ? '' : total > 99 ? '99+' : total.toString()})
+  chrome.browserAction.setBadgeText({text: tweetsCount === 0 ? '' : tweetsCount > 99 ? '99+' : tweetsCount.toString()})
 }
 
-export function loadTweets() {
+function loadTweets() {
   const accessToken = storage.getAccessToken()
 
   if (accessToken) {
-    storage.startLoadingTweets()
     api.loadTweets(accessToken.token, accessToken.secret).end(
       (err, res) => {
         if (err) {
           console.log(err)
         } else {
-          storage.finishLoadingTweets(res.body)
-
-          // The localStorage event listeners are not triggered if the event is emmited in the same page
-          // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Responding_to_storage_changes_with_the_StorageEvent
-          // So we have to call the listeners manually sometimes, like in this case
+          tweetsCount = res.body.total
           updateBadgeText()
         }
       }

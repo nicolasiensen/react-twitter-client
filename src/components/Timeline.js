@@ -5,6 +5,8 @@ import Tweet from './Tweet'
 
 import { space1 } from './../lib/styles'
 import * as api from './../lib/api'
+import chrome from './../lib/chrome'
+import { REACT_APP_EXTENSION_ID } from './../lib/env'
 
 class Timeline extends Component {
   constructor (props) {
@@ -18,6 +20,7 @@ class Timeline extends Component {
       this.setState({isLoading: true})
       const response = await api.loadTweets(this.props.accessToken.token, this.props.accessToken.secret)
       this.setState({tweets: response.body.tweets, isLoading: false})
+      chrome.runtime.sendMessage(REACT_APP_EXTENSION_ID, {action: 'updateTweetCount', value: response.body.total})
     } catch(e) {
       this.setState({hasError: true})
     } finally {
@@ -28,6 +31,7 @@ class Timeline extends Component {
   async archiveTweet (tweet) {
     this.setState({tweets: this.state.tweets.filter(t => t.id !== tweet.id)});
     await api.archiveTweet(this.props.accessToken.token, this.props.accessToken.secret, tweet.id_str);
+    chrome.runtime.sendMessage(REACT_APP_EXTENSION_ID, {action: 'decreaseTweetCount'})
   }
 
   render () {

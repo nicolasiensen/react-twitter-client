@@ -14,6 +14,10 @@ npm install
 REACT_APP_API_HOST=http://localhost:3000 npm start
 ```
 
+If you want to integrate the app with the extension, you can add the environment variable `REACT_APP_EXTENSION_ID` in the start command.
+
+By doing this, the app will exchange messages with the extension.
+
 ## Testing
 ```shell
 npm run test
@@ -23,7 +27,9 @@ npm run test
 This app can be also used as a Chrome extension, to install it to your extensions you will have to generate a build with a manifest file:
 
 ```shell
-REACT_APP_API_HOST=http://localhost:3000 npm run build
+REACT_APP_API_HOST=http://localhost:3000 REACT_APP_EXTENSION_ID=123 REACT_APP_HOST=tinbox.com npm run build
 ```
+
+The `REACT_APP_HOST` is important only if you want to integrate the web app with the extension, by providing this environment variable the web app will exchange messages with the extension.
 
 Now you can install it as a Chrome extension using the `build` folder.

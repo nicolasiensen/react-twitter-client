@@ -26,11 +26,15 @@ function writeManifest (options) {
       permissions: [
         "storage",
         "alarms",
-        process.env.REACT_APP_API_HOST + "/"
+        process.env.REACT_APP_API_HOST + "/",
+        "*://" + process.env.REACT_APP_HOST + "/*"
       ],
       background: {
         scripts: ['static/js/' + options.backgroundFileName],
         persistent: false
+      },
+      externally_connectable: {
+        matches: ["*://" + process.env.REACT_APP_HOST + "/*"]
       }
     }
   )

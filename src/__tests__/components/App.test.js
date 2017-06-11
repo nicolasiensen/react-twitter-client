@@ -6,14 +6,14 @@ import App from './../../components/App'
 import Timeline from './../../components/Timeline'
 import Login from './../../components/Login'
 import * as storage from './../../lib/storage'
-
-import mockLocalStorage from './../../lib/mockLocalStorage'
-mockLocalStorage()
-
 import { mockRequest } from 'superagent'
 import fakeTweets from './../../lib/tweets.json'
-mockRequest(`${process.env.REACT_APP_API_HOST}/`, { tweets: fakeTweets.slice(0, 5) })
-mockRequest(`${process.env.REACT_APP_API_HOST}/request_token`, {})
+import mockLocalStorage from './../../lib/mockLocalStorage'
+import { REACT_APP_API_HOST } from './../../lib/env'
+
+mockLocalStorage()
+mockRequest(`${REACT_APP_API_HOST}/`, { tweets: fakeTweets.slice(0, 5) })
+mockRequest(`${REACT_APP_API_HOST}/request_token`, {})
 
 it('renders the authentication when there is no access token', () => {
   const div = document.createElement('div')
@@ -23,7 +23,6 @@ it('renders the authentication when there is no access token', () => {
 })
 
 it("renders the timeline when there is an access token", () => {
-  storage.init()
   storage.setAccessToken({token: '123', secret: '321'})
   const div = document.createElement('div')
   const component = ReactDOM.render(<App />, div)

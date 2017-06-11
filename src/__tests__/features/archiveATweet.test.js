@@ -8,22 +8,19 @@ import Tweet from './../../components/Tweet'
 import * as storage from './../../lib/storage'
 import * as api from './../../lib/api'
 import afterPromises from './../../lib/afterPromises'
+import mockLocalStorage from './../../lib/mockLocalStorage'
+import fakeTweets from './../../lib/tweets.json'
 
 jest.mock('./../../lib/api')
-
-import mockLocalStorage from './../../lib/mockLocalStorage'
 mockLocalStorage()
-
-import fakeTweets from './../../lib/tweets.json'
 
 beforeEach(() => {
   api.loadTweets = jest.fn(() => new Promise(resolve => resolve({ body: { tweets: fakeTweets } })));
-  spyOn(api, 'archiveTweet')
+  jest.spyOn(api, 'archiveTweet')
 })
 
 it('hides the archived tweets from the timeline', done => {
   // Login
-  storage.init()
   storage.setAccessToken({token: 'AT123456', secret: 'AT654321'})
 
   const div = document.createElement('div')

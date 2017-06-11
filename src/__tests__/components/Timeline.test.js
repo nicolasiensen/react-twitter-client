@@ -5,9 +5,11 @@ import ReactTestUtils from 'react-dom/test-utils'
 import Timeline from './../../components/Timeline'
 import Tweet from './../../components/Tweet'
 import * as api from './../../lib/api'
+import chrome from './../../lib/chrome'
 
 import fakeTweets from './../../lib/tweets'
 import afterPromises from './../../lib/afterPromises'
+import { REACT_APP_EXTENSION_ID } from './../../lib/env'
 
 let timeline
 const accessToken = { token: 'AT123456', secret: 'AT654321' };
@@ -35,7 +37,7 @@ describe('when the tweets are loaded', () => {
   beforeEach(() => {
     api.loadTweets = jest.fn(
       () => new Promise(
-        resolve => resolve({ body: { tweets: fakeTweets } })
+        resolve => resolve({ body: { tweets: fakeTweets, total: fakeTweets.length } })
       )
     )
     timeline = renderComponent()
@@ -52,13 +54,22 @@ describe('when the tweets are loaded', () => {
     })
   })
 
+  it('should send a chrome message to update the tweets count', done => {
+    afterPromises(done, () => {
+      expect(chrome.runtime.sendMessage).toHaveBeenCalledWith(
+        REACT_APP_EXTENSION_ID,
+        {action: 'updateTweetCount', value: fakeTweets.length}
+      )
+    })
+  })
+
   describe('when a tweet is archived', () => {
     let tweetToArchive;
     let renderedTweets;
     let renderedTweetToArchive;
 
     beforeEach((done) => {
-      spyOn(api, 'archiveTweet');
+      jest.spyOn(api, 'archiveTweet');
       tweetToArchive = fakeTweets[0];
 
       afterPromises(done, () => {
@@ -75,6 +86,10 @@ describe('when the tweets are loaded', () => {
     it('should call the API to archive the tweet', () => {
       expect(api.archiveTweet).toHaveBeenCalledWith(accessToken.token, accessToken.secret, tweetToArchive.id_str);
     });
+
+    it('should send a chrome message to decrease the tweets count', () => {
+      expect(chrome.runtime.sendMessage).toHaveBeenCalledWith(REACT_APP_EXTENSION_ID, {action: 'decreaseTweetCount'})
+    })
   });
 
   describe('when the tweets list is empty', () => {
@@ -98,7 +113,7 @@ describe('when the tweets fail to load', () => {
   let error
 
   beforeEach(() => {
-    error = new Error
+    error = new Error()
 
     api.loadTweets = jest.fn(
       () => new Promise(
