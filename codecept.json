@@ -1,0 +1,22 @@
+{
+  "output": "./src/acceptance/output",
+  "helpers": {
+    "WebDriverIO": {
+      "url": "http://localhost:3000",
+      "browser": "chrome"
+    },
+    "ChangeTab": {
+      "require": "./src/acceptance/helpers/changeTabHelper.js"
+    }
+  },
+  "include": {},
+  "mocha": {},
+  "bootstrap": false,
+  "teardown": null,
+  "hooks": [],
+  "tests": "./src/acceptance/*.feature.js",
+  "timeout": 10000,
+  "name": "t-inbox-client",
+  "bootstrap": "./src/acceptance/helpers/setup.js",
+  "teardown": "./src/acceptance/helpers/setup.js"
+}

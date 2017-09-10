@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "codeceptjs-webdriverio": "^1.0.1",
+    "express": "^4.15.3",
     "react-scripts": "1.0.7",
+    "replay": "^2.1.2",
+    "selenium-standalone": "^6.5.0",
     "superagent-mock": "^1.12.0"
   },
   "dependencies": {

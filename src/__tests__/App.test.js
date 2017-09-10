@@ -2,14 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 
-import App from './../../components/App'
-import Timeline from './../../components/Timeline'
-import Login from './../../components/Login'
-import * as storage from './../../lib/storage'
+import App from './../components/App'
+import Timeline from './../components/Timeline'
+import Login from './../components/Login'
+import * as storage from './../lib/storage'
 import { mockRequest } from 'superagent'
-import fakeTweets from './../../lib/tweets.json'
-import mockLocalStorage from './../../lib/mockLocalStorage'
-import { REACT_APP_API_HOST } from './../../lib/env'
+import fakeTweets from './../lib/tweets.json'
+import mockLocalStorage from './../lib/mockLocalStorage'
+import { REACT_APP_API_HOST } from './../lib/env'
 
 mockLocalStorage()
 mockRequest(`${REACT_APP_API_HOST}/`, { tweets: fakeTweets.slice(0, 5) })

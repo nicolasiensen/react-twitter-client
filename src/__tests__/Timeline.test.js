@@ -2,19 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-dom/test-utils'
 
-import Timeline from './../../components/Timeline'
-import Tweet from './../../components/Tweet'
-import * as api from './../../lib/api'
-import chrome from './../../lib/chrome'
+import Timeline from './../components/Timeline'
+import Tweet from './../components/Tweet'
+import * as api from './../lib/api'
+import chrome from './../lib/chrome'
 
-import fakeTweets from './../../lib/tweets'
-import afterPromises from './../../lib/afterPromises'
-import { REACT_APP_EXTENSION_ID } from './../../lib/env'
+import fakeTweets from './../lib/tweets'
+import afterPromises from './../lib/afterPromises'
+import { REACT_APP_EXTENSION_ID } from './../lib/env'
 
 let timeline
 const accessToken = { token: 'AT123456', secret: 'AT654321' };
 
-jest.mock('./../../lib/api')
+jest.mock('./../lib/api')
 
 const renderComponent = (props) => {
   const div = document.createElement('div')

@@ -21,5 +21,15 @@ yarn test
 yarn build
 ```
 
+## Acceptance tests
+Apart from the test suite provided by Create React App, this project has acceptance tests written with [CodeceptJS](http://codecept.io/).
+
+```shell
+# Run all acceptance tests
+ ./node_modules/.bin/codeceptjs run
+```
+
+### 
+
 ## Chrome extension
 This app can also be used as a Chrome extension, the build script will generate everything you need and place all the files in the build folder.

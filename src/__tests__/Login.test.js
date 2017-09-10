@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Login from './../../components/Login'
-import * as storage from './../../lib/storage'
-import mockLocalStorage from './../../lib/mockLocalStorage'
-import { REACT_APP_API_HOST } from './../../lib/env'
+import Login from './../components/Login'
+import * as storage from './../lib/storage'
+import mockLocalStorage from './../lib/mockLocalStorage'
+import { REACT_APP_API_HOST } from './../lib/env'
 import { mockRequest } from 'superagent'
 
 mockLocalStorage()

@@ -41,7 +41,10 @@ class Tweet extends Component {
     const { tweet, retweetedBy } = this.props
 
     return (
-      <div style={{padding: space2, borderBottom: `1px solid ${lightGray}`, background: white, display: 'flex'}}>
+      <div
+        id={`tweet-${tweet.id}`}
+        style={{padding: space2, borderBottom: `1px solid ${lightGray}`, background: white, display: 'flex'}}
+      >
         <div style={{marginRight: space1}}>
           <img alt={tweet.user.name} style={{borderRadius: borderRadius}} src={tweet.user.profile_image_url} />
         </div>
@@ -53,7 +56,7 @@ class Tweet extends Component {
           </div>
           <div dangerouslySetInnerHTML={{__html: linkify(tweet)}}></div>
           <div style={{marginTop: space1}}>
-            <IconButton ref='archiveButton' onClick={this.archive} icon='archive' />
+            <IconButton title="Archive" ref='archiveButton' onClick={this.archive} icon='archive' />
           </div>
         </div>
       </div>
