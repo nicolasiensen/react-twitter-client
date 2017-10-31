@@ -1,0 +1,188 @@
+{
+  "id": 925040493947363328,
+  "geo": null,
+  "lang": "en",
+  "text": "A northern exposure: https://t.co/yU3RQG7cdF https://t.co/DsJaFeFOrk",
+  "user": {
+    "id": 15165493,
+    "url": "http://t.co/giL0pulIEW",
+    "lang": "en",
+    "name": "CassiniSaturn",
+    "id_str": "15165493",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "http://t.co/giL0pulIEW",
+            "indices": [
+              0,
+              22
+            ],
+            "display_url": "saturn.jpl.nasa.gov",
+            "expanded_url": "http://saturn.jpl.nasa.gov"
+          }
+        ]
+      },
+      "description": {
+        "urls": [
+
+        ]
+      }
+    },
+    "location": "Saturn, Solar System",
+    "verified": true,
+    "following": true,
+    "protected": false,
+    "time_zone": "Pacific Time (US & Canada)",
+    "created_at": "Thu Jun 19 03:16:46 +0000 2008",
+    "utc_offset": -25200,
+    "description": "Explored Saturn, its moons and the magnificent rings",
+    "geo_enabled": false,
+    "screen_name": "CassiniSaturn",
+    "listed_count": 11174,
+    "friends_count": 390,
+    "is_translator": false,
+    "notifications": false,
+    "statuses_count": 2993,
+    "default_profile": false,
+    "followers_count": 1533480,
+    "translator_type": "none",
+    "favourites_count": 875,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/814511840449306624/jY7BGXQ2_normal.jpg",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/15165493/1505759795",
+    "profile_link_color": "232367",
+    "profile_text_color": "030C2D",
+    "follow_request_sent": false,
+    "contributors_enabled": false,
+    "has_extended_profile": false,
+    "default_profile_image": false,
+    "is_translation_enabled": false,
+    "profile_background_tile": false,
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/814511840449306624/jY7BGXQ2_normal.jpg",
+    "profile_background_color": "030C0D",
+    "profile_sidebar_fill_color": "335B8A",
+    "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/30470782/jpl_tw_cas_bkg.009.jpg",
+    "profile_sidebar_border_color": "49698C",
+    "profile_use_background_image": true,
+    "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/30470782/jpl_tw_cas_bkg.009.jpg"
+  },
+  "place": null,
+  "id_str": "925040493947363328",
+  "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+  "entities": {
+    "urls": [
+      {
+        "url": "https://t.co/yU3RQG7cdF",
+        "indices": [
+          21,
+          44
+        ],
+        "display_url": "go.nasa.gov/2yZOrCC",
+        "expanded_url": "https://go.nasa.gov/2yZOrCC"
+      }
+    ],
+    "media": [
+      {
+        "id": 925040448703315969,
+        "url": "https://t.co/DsJaFeFOrk",
+        "type": "photo",
+        "sizes": {
+          "large": {
+            "h": 1020,
+            "w": 1020,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          },
+          "medium": {
+            "h": 1020,
+            "w": 1020,
+            "resize": "fit"
+          }
+        },
+        "id_str": "925040448703315969",
+        "indices": [
+          45,
+          68
+        ],
+        "media_url": "http://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg",
+        "display_url": "pic.twitter.com/DsJaFeFOrk",
+        "expanded_url": "https://twitter.com/CassiniSaturn/status/925040493947363328/photo/1",
+        "media_url_https": "https://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg"
+      }
+    ],
+    "symbols": [
+
+    ],
+    "hashtags": [
+
+    ],
+    "user_mentions": [
+
+    ]
+  },
+  "favorited": false,
+  "retweeted": false,
+  "truncated": false,
+  "created_at": "Mon Oct 30 16:43:34 +0000 2017",
+  "coordinates": null,
+  "contributors": null,
+  "retweet_count": 248,
+  "favorite_count": 970,
+  "is_quote_status": false,
+  "extended_entities": {
+    "media": [
+      {
+        "id": 925040448703315969,
+        "url": "https://t.co/DsJaFeFOrk",
+        "type": "photo",
+        "sizes": {
+          "large": {
+            "h": 1020,
+            "w": 1020,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          },
+          "medium": {
+            "h": 1020,
+            "w": 1020,
+            "resize": "fit"
+          }
+        },
+        "id_str": "925040448703315969",
+        "indices": [
+          45,
+          68
+        ],
+        "media_url": "http://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg",
+        "display_url": "pic.twitter.com/DsJaFeFOrk",
+        "expanded_url": "https://twitter.com/CassiniSaturn/status/925040493947363328/photo/1",
+        "media_url_https": "https://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg"
+      }
+    ]
+  },
+  "possibly_sensitive": false,
+  "in_reply_to_user_id": null,
+  "in_reply_to_status_id": null,
+  "in_reply_to_screen_name": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_status_id_str": null,
+  "possibly_sensitive_appealable": false
+}

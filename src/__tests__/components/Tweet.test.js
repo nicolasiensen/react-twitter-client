@@ -51,3 +51,7 @@ it('calls the onArchive callback when the archive button is pressed', () => {
 
   expect(handleArchive).toBeCalledWith(retweetedTweet)
 })
+
+xit('shows the tweet media', () => {
+  // TODO: implement this test once we introduce enzyme and the shadow renderer
+})
