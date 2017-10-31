@@ -34,9 +34,7 @@ it('shows the tweet age', () => {
 })
 
 it('shows who retweeted the original tweet', () => {
-  const component = ReactTestUtils.renderIntoDocument(
-    <Tweet tweet={retweetedTweet.retweeted_status} retweetedBy={retweetedTweet.user} />
-  )
+  const component = ReactTestUtils.renderIntoDocument(<Tweet tweet={retweetedTweet} />)
   const domNode = ReactDOM.findDOMNode(component)
   expect(domNode.textContent).toMatch(`Retweeted by ${retweetedTweet.user.name}`)
 })
@@ -44,12 +42,12 @@ it('shows who retweeted the original tweet', () => {
 it('calls the onArchive callback when the archive button is pressed', () => {
   const handleArchive = jest.fn()
   const component = ReactTestUtils.renderIntoDocument(
-    <Tweet tweet={retweetedTweet.retweeted_status} retweetedBy={retweetedTweet.user} onArchive={handleArchive} />
+    <Tweet tweet={retweetedTweet} onArchive={handleArchive} />
   )
 
   const archiveButton = ReactTestUtils.findRenderedDOMComponentWithTag(component.refs.archiveButton, 'button')
 
   ReactTestUtils.Simulate.click(archiveButton)
 
-  expect(handleArchive).toBeCalledWith(retweetedTweet.retweeted_status)
+  expect(handleArchive).toBeCalledWith(retweetedTweet)
 })

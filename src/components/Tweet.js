@@ -38,7 +38,8 @@ class Tweet extends Component {
   }
 
   render() {
-    const { tweet, retweetedBy } = this.props
+    const isOriginalTweet = this.props.tweet.retweeted_status === undefined
+    const tweet = isOriginalTweet ? this.props.tweet : this.props.tweet.retweeted_status
 
     return (
       <div style={{padding: space2, borderBottom: `1px solid ${lightGray}`, background: white, display: 'flex'}}>
@@ -46,7 +47,7 @@ class Tweet extends Component {
           <img alt={tweet.user.name} style={{borderRadius: borderRadius}} src={tweet.user.profile_image_url} />
         </div>
         <div style={{overflow: 'hidden'}}>
-          <div style={{fontSize: h6}}>{retweetedBy && `Retweeted by ${retweetedBy.name}`}</div>
+          <div style={{fontSize: h6}}>{!isOriginalTweet && `Retweeted by ${this.props.tweet.user.name}`}</div>
           <div style={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>
             <span style={{fontWeight: fontBold}}>{tweet.user.name}</span>&nbsp;
             <span style={{fontSize: h6}}>{moment(tweet.created_at, 'ddd MMM DD HH:mm:ss Z YYYY').fromNow()}</span>
@@ -69,10 +70,6 @@ Tweet.propTypes = {
       profile_image_url: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     })
-  }),
-  retweetedBy: PropTypes.shape({
-    profile_image_url: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
   }),
   onArchive: PropTypes.func,
 }
