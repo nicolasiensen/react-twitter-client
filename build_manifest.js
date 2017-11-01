@@ -15,7 +15,7 @@ function writeManifest (options) {
   const manifest = JSON.stringify(
     {
       manifest_version: 2,
-      version: "1.1",
+      version: "1.2.1",
       name: "T-Inbox",
       description: "Receive tweets and organize them just like as an inbox",
       "icons": {
