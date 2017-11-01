@@ -5,8 +5,8 @@ class TweetMedia extends Component {
     return (
       <div style={this.props.style}>
         {
-          this.props.media.type === "photo" ? (
-            <a href={this.props.media.media_url}>
+          this.props.media.type === 'photo' ? (
+            <a href={this.props.media.media_url} target='_blank' rel='noopener noreferrer'>
               <img style={{ width: '100%' }} alt={this.props.media.url} src={this.props.media.media_url} />
             </a>
           ) : (
