@@ -5,6 +5,7 @@ import moment from 'moment'
 
 import Tweet from './../../components/Tweet'
 import fakeTweets from './../../lib/tweets'
+import tweetWithMedia from './../fixtures/tweetWithPhoto'
 
 const tweet = fakeTweets.find(t => !t.retweeted_status)
 const retweetedTweet = fakeTweets.find(t => t.retweeted_status)
@@ -52,6 +53,14 @@ it('calls the onArchive callback when the archive button is pressed', () => {
   expect(handleArchive).toBeCalledWith(retweetedTweet)
 })
 
-xit('shows the tweet media', () => {
-  // TODO: implement this test once we introduce enzyme and the shadow renderer
+describe('when the tweet has media', () => {
+  it('removes the media links from the text', () => {
+    const component = ReactTestUtils.renderIntoDocument(<Tweet tweet={tweetWithMedia} />)
+    const domNode = ReactDOM.findDOMNode(component)
+    expect(domNode.textContent).not.toContain(tweetWithMedia.extended_entities.media[0].url)
+  })
+
+  xit('shows the tweet media', () => {
+    // TODO: implement this test once we introduce enzyme and the shadow renderer
+  })
 })

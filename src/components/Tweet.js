@@ -6,24 +6,15 @@ import IconButton from './IconButton'
 import TweetMedia from './TweetMedia'
 import { borderRadius, space1, space2, lightGray, white, h6, fontBold, blue } from './../lib/styles'
 
-function linkify(tweet) {
-  let newText = tweet.text
+function linkify(text, urls) {
+  let newText = text
 
-  tweet.entities.urls.forEach(url => {
+  urls.forEach(url => {
     newText = newText.replace(
       url.url,
       `<a style='color: ${blue}' target='_blank' href='${url.expanded_url}'>${url.url}</a>`
     )
   })
-
-  if (tweet.extended_entities) {
-    tweet.extended_entities.media.forEach(media => {
-      newText = newText.replace(
-        media.url,
-        `<a style='color: ${blue}' target='_blank' href='${media.expanded_url}'>${media.url}</a>`
-      )
-    })
-  }
 
   return newText
 }
@@ -43,6 +34,10 @@ class Tweet extends Component {
     const tweet = isOriginalTweet ? this.props.tweet : this.props.tweet.retweeted_status
     const media = tweet.extended_entities ? tweet.extended_entities.media : []
 
+    let tweetText = tweet.text
+    media.forEach(m => tweetText = tweetText.replace(m.url, ''))
+    tweetText = linkify(tweetText, tweet.entities.urls)
+
     return (
       <div style={{padding: space2, borderBottom: `1px solid ${lightGray}`, background: white, display: 'flex'}}>
         <div style={{marginRight: space1}}>
@@ -54,7 +49,7 @@ class Tweet extends Component {
             <span style={{fontWeight: fontBold}}>{tweet.user.name}</span>&nbsp;
             <span style={{fontSize: h6}}>{moment(tweet.created_at, 'ddd MMM DD HH:mm:ss Z YYYY').fromNow()}</span>
           </div>
-          <div dangerouslySetInnerHTML={{__html: linkify(tweet)}}></div>
+          <div dangerouslySetInnerHTML={{__html: tweetText}}></div>
           {
             media.map(
               m => <TweetMedia key={m.id} media={m} style={{ marginTop: space1 }} />
