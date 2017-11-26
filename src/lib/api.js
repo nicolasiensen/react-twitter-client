@@ -26,3 +26,7 @@ export function archiveTweet (accessToken, accessTokenSecret, tweetId) {
     twitter_access_token_secret: accessTokenSecret
   })
 }
+
+export function loadLinkPreview (link) {
+  return request.get(`${REACT_APP_API_HOST}/link_preview`).query({link})
+}

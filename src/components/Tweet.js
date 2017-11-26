@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import IconButton from './IconButton'
 import TweetMedia from './TweetMedia'
+import LinkPreview from './LinkPreview'
 import { borderRadius, space1, space2, lightGray, white, h6, fontBold, blue } from './../lib/styles'
 
 function linkify(text, urls) {
@@ -33,9 +34,11 @@ class Tweet extends Component {
     const isOriginalTweet = this.props.tweet.retweeted_status === undefined
     const tweet = isOriginalTweet ? this.props.tweet : this.props.tweet.retweeted_status
     const media = tweet.extended_entities ? tweet.extended_entities.media : []
+    const urls =  tweet.is_quote_status ? [] : tweet.entities.urls.map(u => u.url)
 
-    let tweetText = tweet.text
+    let tweetText = tweet.full_text
     media.forEach(m => tweetText = tweetText.replace(m.url, ''))
+    urls.forEach(url => tweetText = tweetText.replace(url, ''))
     tweetText = linkify(tweetText, tweet.entities.urls)
 
     return (
@@ -53,6 +56,11 @@ class Tweet extends Component {
           {
             media.map(
               m => <TweetMedia key={m.id} media={m} style={{ marginTop: space1 }} />
+            )
+          }
+          {
+            urls.map(
+              url => <LinkPreview url={url} />
             )
           }
           <div style={{marginTop: space1}}>
