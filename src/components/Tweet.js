@@ -34,7 +34,7 @@ class Tweet extends Component {
     const tweet = isOriginalTweet ? this.props.tweet : this.props.tweet.retweeted_status
     const media = tweet.extended_entities ? tweet.extended_entities.media : []
 
-    let tweetText = tweet.text
+    let tweetText = tweet.full_text
     media.forEach(m => tweetText = tweetText.replace(m.url, ''))
     tweetText = linkify(tweetText, tweet.entities.urls)
 
@@ -66,7 +66,7 @@ class Tweet extends Component {
 
 Tweet.propTypes = {
   tweet: PropTypes.shape({
-    text: PropTypes.string.isRequired,
+    full_text: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
     user: PropTypes.shape({
       profile_image_url: PropTypes.string.isRequired,

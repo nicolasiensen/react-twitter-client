@@ -7,13 +7,13 @@ import Tweet from './../../components/Tweet'
 import fakeTweets from './../../lib/tweets'
 import tweetWithMedia from './../fixtures/tweetWithPhoto'
 
-const tweet = fakeTweets.find(t => !t.retweeted_status)
+const tweet = fakeTweets.filter(t => !t.retweeted_status)[1]
 const retweetedTweet = fakeTweets.find(t => t.retweeted_status)
 
 it('shows the tweet text', () => {
   const component = ReactTestUtils.renderIntoDocument(<Tweet tweet={tweet} />)
   const domNode = ReactDOM.findDOMNode(component)
-  expect(domNode.textContent).toMatch(tweet.text.replace(/&amp;/g, '&'))
+  expect(domNode.textContent).toMatch(tweet.full_text.replace(/&amp;/g, '&'))
 })
 
 it('shows the profile image of the user', () => {

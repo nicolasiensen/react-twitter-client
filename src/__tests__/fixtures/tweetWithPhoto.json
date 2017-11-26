@@ -1,188 +1,198 @@
 {
-  "id": 925040493947363328,
-  "geo": null,
-  "lang": "en",
-  "text": "A northern exposure: https://t.co/yU3RQG7cdF https://t.co/DsJaFeFOrk",
-  "user": {
-    "id": 15165493,
-    "url": "http://t.co/giL0pulIEW",
-    "lang": "en",
-    "name": "CassiniSaturn",
-    "id_str": "15165493",
-    "entities": {
-      "url": {
-        "urls": [
+  "id":934804767964106752,
+  "geo":null,
+  "lang":"en",
+  "user":{
+    "id":891343674881310721,
+    "url":"https://t.co/SdQKlcdS1A",
+    "lang":"en",
+    "name":"React Day Berlin",
+    "id_str":"891343674881310721",
+    "entities":{
+      "url":{
+        "urls":[
           {
-            "url": "http://t.co/giL0pulIEW",
-            "indices": [
+            "url":"https://t.co/SdQKlcdS1A",
+            "indices":[
               0,
-              22
+              23
             ],
-            "display_url": "saturn.jpl.nasa.gov",
-            "expanded_url": "http://saturn.jpl.nasa.gov"
+            "display_url":"reactday.berlin",
+            "expanded_url":"https://reactday.berlin"
           }
         ]
       },
-      "description": {
-        "urls": [
+      "description":{
+        "urls":[
 
         ]
       }
     },
-    "location": "Saturn, Solar System",
-    "verified": true,
-    "following": true,
-    "protected": false,
-    "time_zone": "Pacific Time (US & Canada)",
-    "created_at": "Thu Jun 19 03:16:46 +0000 2008",
-    "utc_offset": -25200,
-    "description": "Explored Saturn, its moons and the magnificent rings",
-    "geo_enabled": false,
-    "screen_name": "CassiniSaturn",
-    "listed_count": 11174,
-    "friends_count": 390,
-    "is_translator": false,
-    "notifications": false,
-    "statuses_count": 2993,
-    "default_profile": false,
-    "followers_count": 1533480,
-    "translator_type": "none",
-    "favourites_count": 875,
-    "profile_image_url": "http://pbs.twimg.com/profile_images/814511840449306624/jY7BGXQ2_normal.jpg",
-    "profile_banner_url": "https://pbs.twimg.com/profile_banners/15165493/1505759795",
-    "profile_link_color": "232367",
-    "profile_text_color": "030C2D",
-    "follow_request_sent": false,
-    "contributors_enabled": false,
-    "has_extended_profile": false,
-    "default_profile_image": false,
-    "is_translation_enabled": false,
-    "profile_background_tile": false,
-    "profile_image_url_https": "https://pbs.twimg.com/profile_images/814511840449306624/jY7BGXQ2_normal.jpg",
-    "profile_background_color": "030C0D",
-    "profile_sidebar_fill_color": "335B8A",
-    "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/30470782/jpl_tw_cas_bkg.009.jpg",
-    "profile_sidebar_border_color": "49698C",
-    "profile_use_background_image": true,
-    "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/30470782/jpl_tw_cas_bkg.009.jpg"
+    "location":"Berlin, Germany",
+    "verified":false,
+    "following":true,
+    "protected":false,
+    "time_zone":null,
+    "created_at":"Sat Jul 29 17:04:27 +0000 2017",
+    "utc_offset":null,
+    "description":"A single-day conference providing learning \u0026 networking experience for #frontend engineers. \n\nWe 💜 the #ReactJS tech stack ⚛️",
+    "geo_enabled":false,
+    "screen_name":"reactdayberlin",
+    "listed_count":15,
+    "friends_count":448,
+    "is_translator":false,
+    "notifications":false,
+    "statuses_count":298,
+    "default_profile":false,
+    "followers_count":559,
+    "translator_type":"none",
+    "favourites_count":92,
+    "profile_image_url":"http://pbs.twimg.com/profile_images/909710573885181952/Doe05-jp_normal.jpg",
+    "profile_banner_url":"https://pbs.twimg.com/profile_banners/891343674881310721/1505922146",
+    "profile_link_color":"3800E9",
+    "profile_text_color":"000000",
+    "follow_request_sent":false,
+    "contributors_enabled":false,
+    "has_extended_profile":false,
+    "default_profile_image":false,
+    "is_translation_enabled":false,
+    "profile_background_tile":false,
+    "profile_image_url_https":"https://pbs.twimg.com/profile_images/909710573885181952/Doe05-jp_normal.jpg",
+    "profile_background_color":"000000",
+    "profile_sidebar_fill_color":"000000",
+    "profile_background_image_url":"http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_sidebar_border_color":"000000",
+    "profile_use_background_image":false,
+    "profile_background_image_url_https":"https://abs.twimg.com/images/themes/theme1/bg.png"
   },
-  "place": null,
-  "id_str": "925040493947363328",
-  "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
-  "entities": {
-    "urls": [
+  "place":null,
+  "id_str":"934804767964106752",
+  "source":"\u003ca href=\"http://kuku.io\" rel=\"nofollow\"\u003eLink account with KUKU.io\u003c/a\u003e",
+  "entities":{
+    "urls":[
       {
-        "url": "https://t.co/yU3RQG7cdF",
-        "indices": [
-          21,
-          44
+        "url":"https://t.co/DsdoMrIJWI",
+        "indices":[
+          80,
+          103
         ],
-        "display_url": "go.nasa.gov/2yZOrCC",
-        "expanded_url": "https://go.nasa.gov/2yZOrCC"
+        "display_url":"goo.gl/CEsFWF",
+        "expanded_url":"https://goo.gl/CEsFWF"
       }
     ],
-    "media": [
+    "media":[
       {
-        "id": 925040448703315969,
-        "url": "https://t.co/DsJaFeFOrk",
-        "type": "photo",
-        "sizes": {
-          "large": {
-            "h": 1020,
-            "w": 1020,
-            "resize": "fit"
+        "id":934804765124513792,
+        "url":"https://t.co/x1iM8yjaoJ",
+        "type":"photo",
+        "sizes":{
+          "large":{
+            "h":675,
+            "w":900,
+            "resize":"fit"
           },
-          "small": {
-            "h": 680,
-            "w": 680,
-            "resize": "fit"
+          "small":{
+            "h":510,
+            "w":680,
+            "resize":"fit"
           },
-          "thumb": {
-            "h": 150,
-            "w": 150,
-            "resize": "crop"
+          "thumb":{
+            "h":150,
+            "w":150,
+            "resize":"crop"
           },
-          "medium": {
-            "h": 1020,
-            "w": 1020,
-            "resize": "fit"
+          "medium":{
+            "h":675,
+            "w":900,
+            "resize":"fit"
           }
         },
-        "id_str": "925040448703315969",
-        "indices": [
-          45,
-          68
+        "id_str":"934804765124513792",
+        "indices":[
+          113,
+          136
         ],
-        "media_url": "http://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg",
-        "display_url": "pic.twitter.com/DsJaFeFOrk",
-        "expanded_url": "https://twitter.com/CassiniSaturn/status/925040493947363328/photo/1",
-        "media_url_https": "https://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg"
+        "media_url":"http://pbs.twimg.com/media/DPkX-yeW0AATOnh.jpg",
+        "display_url":"pic.twitter.com/x1iM8yjaoJ",
+        "expanded_url":"https://twitter.com/reactdayberlin/status/934804767964106752/photo/1",
+        "media_url_https":"https://pbs.twimg.com/media/DPkX-yeW0AATOnh.jpg"
       }
     ],
-    "symbols": [
+    "symbols":[
 
     ],
-    "hashtags": [
-
+    "hashtags":[
+      {
+        "text":"ReactJS",
+        "indices":[
+          104,
+          112
+        ]
+      }
     ],
-    "user_mentions": [
+    "user_mentions":[
 
     ]
   },
-  "favorited": false,
-  "retweeted": false,
-  "truncated": false,
-  "created_at": "Mon Oct 30 16:43:34 +0000 2017",
-  "coordinates": null,
-  "contributors": null,
-  "retweet_count": 248,
-  "favorite_count": 970,
-  "is_quote_status": false,
-  "extended_entities": {
-    "media": [
+  "favorited":false,
+  "full_text":"React Switch — a draggable, customizable and accessible toggle-switch component https://t.co/DsdoMrIJWI #ReactJS https://t.co/x1iM8yjaoJ",
+  "retweeted":false,
+  "truncated":false,
+  "created_at":"Sun Nov 26 15:23:19 +0000 2017",
+  "coordinates":null,
+  "contributors":null,
+  "retweet_count":0,
+  "favorite_count":0,
+  "is_quote_status":false,
+  "extended_entities":{
+    "media":[
       {
-        "id": 925040448703315969,
-        "url": "https://t.co/DsJaFeFOrk",
-        "type": "photo",
-        "sizes": {
-          "large": {
-            "h": 1020,
-            "w": 1020,
-            "resize": "fit"
+        "id":934804765124513792,
+        "url":"https://t.co/x1iM8yjaoJ",
+        "type":"photo",
+        "sizes":{
+          "large":{
+            "h":675,
+            "w":900,
+            "resize":"fit"
           },
-          "small": {
-            "h": 680,
-            "w": 680,
-            "resize": "fit"
+          "small":{
+            "h":510,
+            "w":680,
+            "resize":"fit"
           },
-          "thumb": {
-            "h": 150,
-            "w": 150,
-            "resize": "crop"
+          "thumb":{
+            "h":150,
+            "w":150,
+            "resize":"crop"
           },
-          "medium": {
-            "h": 1020,
-            "w": 1020,
-            "resize": "fit"
+          "medium":{
+            "h":675,
+            "w":900,
+            "resize":"fit"
           }
         },
-        "id_str": "925040448703315969",
-        "indices": [
-          45,
-          68
+        "id_str":"934804765124513792",
+        "indices":[
+          113,
+          136
         ],
-        "media_url": "http://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg",
-        "display_url": "pic.twitter.com/DsJaFeFOrk",
-        "expanded_url": "https://twitter.com/CassiniSaturn/status/925040493947363328/photo/1",
-        "media_url_https": "https://pbs.twimg.com/media/DNZnYxPUQAE-BeC.jpg"
+        "media_url":"http://pbs.twimg.com/media/DPkX-yeW0AATOnh.jpg",
+        "display_url":"pic.twitter.com/x1iM8yjaoJ",
+        "expanded_url":"https://twitter.com/reactdayberlin/status/934804767964106752/photo/1",
+        "media_url_https":"https://pbs.twimg.com/media/DPkX-yeW0AATOnh.jpg"
       }
     ]
   },
-  "possibly_sensitive": false,
-  "in_reply_to_user_id": null,
-  "in_reply_to_status_id": null,
-  "in_reply_to_screen_name": null,
-  "in_reply_to_user_id_str": null,
-  "in_reply_to_status_id_str": null,
-  "possibly_sensitive_appealable": false
+  "display_text_range":[
+    0,
+    112
+  ],
+  "possibly_sensitive":false,
+  "in_reply_to_user_id":null,
+  "in_reply_to_status_id":null,
+  "in_reply_to_screen_name":null,
+  "in_reply_to_user_id_str":null,
+  "in_reply_to_status_id_str":null,
+  "possibly_sensitive_appealable":false
 }
