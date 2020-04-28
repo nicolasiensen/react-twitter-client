@@ -1,3 +1,5 @@
+Nico was here!
+
 This project is built on top of [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## Getting started
